@@ -23,12 +23,6 @@ public class LiteCraftMain
 		GLFW.glfwWindowHint(GLFW.GLFW_VISIBLE, GLFW.GLFW_FALSE); // the window will stay hidden after creation
 		GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_TRUE); // the window will be resizable
 		win = new Window();
-		// Make the OpenGL context current
-		GLFW.glfwMakeContextCurrent(win.getWindow());
-		// Enable v-sync
-		GLFW.glfwSwapInterval(1);
-		// Make the window visible
-		GLFW.glfwShowWindow(win.getWindow());
 	}
 
 	public void run()
@@ -52,7 +46,7 @@ public class LiteCraftMain
 		// This line is critical for LWJGL's interoperation with GLFW.
 		GL.createCapabilities();
 		// Set the background color
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		GL11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		// Run the rendering loop until the user has attempted to close the window or has pressed the ESCAPE key.
 		while (!GLFW.glfwWindowShouldClose(win.getWindow()))
 		{

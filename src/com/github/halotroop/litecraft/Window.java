@@ -3,12 +3,8 @@ package com.github.halotroop.litecraft;
 import java.nio.IntBuffer;
 
 import org.lwjgl.Version;
-import org.lwjgl.glfw.Callbacks;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.glfw.GLFWVidMode;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.glfw.*;
+import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryStack;
 
 public class Window
@@ -44,6 +40,12 @@ public class Window
 			GLFWVidMode vidmode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
 			// Center the window
 			GLFW.glfwSetWindowPos(window, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2);
+			// Make the OpenGL context current
+			GLFW.glfwMakeContextCurrent(window);
+			// Enable v-sync
+			GLFW.glfwSwapInterval(1);
+			// Make the window visible
+			GLFW.glfwShowWindow(window);
 		}
 	}
 
