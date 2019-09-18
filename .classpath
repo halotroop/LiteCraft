@@ -12,7 +12,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/bwyap-engine.jar" sourcepath="C:/Coding/Java/libraries/Bwyap&apos;s RenderEngine/src.zip"/>
+	<classpathentry kind="lib" path="lib/bwyap-engine.jar" sourcepath="C:/Users/Desmond/NewCraft-workspace/LiteCraft/lib/bywap-engine-src.zip"/>
 	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
