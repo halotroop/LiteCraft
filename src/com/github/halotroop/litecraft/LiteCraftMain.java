@@ -30,7 +30,7 @@ public class LiteCraftMain
 		if (!GLFW.glfwInit()) throw new IllegalStateException("Unable to initialize GLFW");
 		// Configure GLFW
 		window = new LCWindow(width, height);
-		window.setDefaultTitle("LiteCraft " + "INSERT SPLASH TEXT HERE!");
+		window.setWindowTitle("LiteCraft " + "INSERT SPLASH TEXT HERE!");
 		
 		// Setup a key callback. It will be called every time a key is pressed, repeated or released.
 		GLFW.glfwSetKeyCallback(window.getWindowLong(), (window, key, scancode, action, mods) ->

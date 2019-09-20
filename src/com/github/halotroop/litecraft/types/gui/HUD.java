@@ -1,11 +1,9 @@
 package com.github.halotroop.litecraft.types.gui;
 
-import com.bwyap.engine.gui.GUI;
-
-public abstract class HUD extends GUI
+public abstract class HUD
 {
-	public HUD(float width, float height)
+	public HUD()
 	{
-		super(width, height);
+		
 	}
 }

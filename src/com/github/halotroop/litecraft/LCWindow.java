@@ -1,5 +1,6 @@
 package com.github.halotroop.litecraft;
 
+import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import org.joml.Vector2f;
@@ -8,64 +9,62 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryStack;
 
-import com.bwyap.engine.EngineInterface;
-import com.bwyap.engine.input.InputHandler;
-import com.bwyap.engine.window.WindowInterface;
+import com.github.halotroop.litecraft.types.gui.MainMenu;
 
-public class LCWindow extends com.bwyap.engine.window.Window
+public class LCWindow
 {
 	private long windowLong;
-
-	public long getWindowLong()
-	{ return windowLong; }
-
-	public void setWindowLong(long window)
-	{ this.windowLong = window; }
-
-	public LCWindow(int width, int height)
+	public long getWindowLong() { return windowLong; }
+	
+	private String title;
+	protected void setWindowTitle(String title) {	this.title = title;	}
+	public String getWindowTitle() {	return title;	}
+	
+	private int width, height;
+	public int getWidth() {	return width;	}
+	public int getHeight() {	return height;	}
+	public void setWidth(int width) {	this.width = width;	}
+	public void setHeight(int height) {	this.height = height;	}
+	public void setWidthAndHeight(int width, int height)
 	{
-		super(width, height, "LiteCraft", true);
+		this.width = width;
+		this.height = height;
+	}
+
+	public LCWindow(int width, int height, String title)
+	{
+		setWindowTitle(title);
+		setWidthAndHeight(width, height);
 		
 		init();
 		start();
 	}
 
-	@Override
+	public LCWindow(int width, int height)
+	{
+		this(width, height, "LiteCraft");
+	}
+	
 	public boolean shouldClose()
 	{
 		return false;
 	}
 
-	@Override
-	public void processEvents()
-	{
-		
-	}
-
-	@Override
 	public void swapDisplayBuffers()
 	{
 		
 	}
 
-	@Override
-	public EngineInterface createEngine() throws Exception
-	{
-		return null;
-	}
-
-	@Override
 	public void init()
 	{
 		GLFW.glfwDefaultWindowHints();
 		GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, 1);
 		
 		// Create the window
-		windowLong = GLFW.glfwCreateWindow(getWidth(), getHeight(), getDefaultTitle(), 0, 0);
+		this.windowLong = GLFW.glfwCreateWindow(getWidth(), getHeight(), getWindowTitle(), 0, 0);
 		if (windowLong == 0) throw new RuntimeException("Failed to create the GLFW window");
 	}
 
-	@Override
 	public void start()
 	{
 		// Get the thread stack and push a new frame
@@ -88,17 +87,9 @@ public class LCWindow extends com.bwyap.engine.window.Window
 		}
 	}
 
-	@Override
 	public void dispose()
 	{
 		Callbacks.glfwFreeCallbacks(windowLong);
 		GLFW.glfwDestroyWindow(windowLong);
 	}
-
-	@Override
-	protected void setWindowTitle(String title)
-	{
-		super.setDefaultTitle(title);
-	}
-
 }
