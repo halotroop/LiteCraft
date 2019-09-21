@@ -6,13 +6,18 @@ import org.lwjgl.opengl.GL20;
 
 import com.github.halotroop.litecraft.render.model.Model;
 import com.github.halotroop.litecraft.render.model.Vertex;
+import com.github.halotroop.litecraft.render.shaders.BasicShader;
+import com.github.halotroop.litecraft.render.shaders.Shader;
 
 public class Renderer
 {
+	private BasicShader basicShader;
 	private Model model;
 	public Renderer()
 	{
 		init();
+		
+		basicShader = new BasicShader();
 		
 		model = new Model();
 		
@@ -28,14 +33,14 @@ public class Renderer
 	
 	public void render()
 	{
-		
-		
+		basicShader.bind();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, model.getVBO());
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, Vertex.SIZE * 4, 0);
 		GL20.glDrawArrays(GL20.GL_TRIANGLES, 0, model.getSize());
 		GL20.glDisableVertexAttribArray(0);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+		Shader.unbind();
 	}
 
 	private void init()
