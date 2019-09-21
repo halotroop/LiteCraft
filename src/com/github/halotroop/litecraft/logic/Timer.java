@@ -49,7 +49,7 @@ public class Timer
 
 	public boolean tick()
 	{
-		long currentTime = System.nanoTime();
+		long currentTime = System.currentTimeMillis();
 		if (currentTime >= nextTick)
 		{
 			long targetTimeDelta = 1000L / tickRate;

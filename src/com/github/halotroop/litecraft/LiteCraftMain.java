@@ -11,7 +11,7 @@ import com.github.halotroop.litecraft.render.Renderer;
 public class LiteCraftMain
 {
 	protected Timer timer;
-	private int fps, ups;
+	private int fps, ups, tps;
 	public static int maxFPS = 100;
 	private long frameTimer;
 	private Renderer renderer;
@@ -25,7 +25,7 @@ public class LiteCraftMain
 		@Override
 		public void onTick(float deltaTime)
 		{
-			
+			tps++;
 		}
 	};
 	
@@ -73,7 +73,7 @@ public class LiteCraftMain
 		GL.createCapabilities();	// This line is critical for LWJGL's interoperation with GLFW.
 		renderer = new Renderer();
 
-		window.setWindowTitle("LiteCraft " + "INSERT SPLASH TEXT HERE!");
+		window.setWindowTitle("LiteCraft - " + "INSERT SPLASH TEXT HERE!");
 		input();
 		
 		System.out.println("Initialization complete.");
@@ -103,10 +103,10 @@ public class LiteCraftMain
 		
 		if (System.currentTimeMillis() > frameTimer + 1000) // wait for one second
 		{
-			System.out.println("Frames this second: " + fps);
-			System.out.println("Updates this second: " + ups);
+			window.setWindowTitle("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
 			fps = 0;
 			ups = 0;
+			tps = 0;
 			frameTimer += 1000; // reset the wait time
 		}
 	}

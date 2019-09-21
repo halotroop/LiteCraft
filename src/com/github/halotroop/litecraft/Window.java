@@ -103,7 +103,6 @@ public class Window
 			GLFWVidMode vidmode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor()); // Get the resolution of the primary monitor
 			GLFW.glfwSetWindowPos(windowLong, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2); // Center the window
 			GLFW.glfwMakeContextCurrent(windowLong); // Make the OpenGL context current
-			GLFW.glfwSwapInterval(1); // Enable V-Sync
 			GLFW.glfwShowWindow(windowLong); // Make the window visible
 		}
 	}
