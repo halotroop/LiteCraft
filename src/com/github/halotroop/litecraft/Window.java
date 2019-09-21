@@ -74,15 +74,9 @@ public class Window
 
 	// (Always useful to have simpler inputs, even if you only ever plan on using these once. Can be great for debugging, or just making life easier.
 	public Window()
-	{
-		this(1600, 900);
-	}
-
+	{this(1600, 900);}
 	public Window(int width, int height)
-	{
-		this(width, height, "LiteCraft");
-	}
-
+	{this(width, height, "LiteCraft");}
 	public Window(int width, int height, String title)
 	{
 		// Keep these in this order!
@@ -90,12 +84,6 @@ public class Window
 		setWidthAndHeight(width, height);
 		init();
 		// Thank you.
-	}
-
-	public void destroy()
-	{
-		Callbacks.glfwFreeCallbacks(windowLong);
-		GLFW.glfwDestroyWindow(windowLong);
 	}
 
 	public void init()
@@ -115,9 +103,15 @@ public class Window
 			GLFWVidMode vidmode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor()); // Get the resolution of the primary monitor
 			GLFW.glfwSetWindowPos(windowLong, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2); // Center the window
 			GLFW.glfwMakeContextCurrent(windowLong); // Make the OpenGL context current
-			GLFW.glfwSwapInterval(1); // Enable v-sync
+			GLFW.glfwSwapInterval(1); // Enable V-Sync
 			GLFW.glfwShowWindow(windowLong); // Make the window visible
 		}
+	}
+	
+	public void destroy()
+	{
+		Callbacks.glfwFreeCallbacks(windowLong);
+		GLFW.glfwDestroyWindow(windowLong);
 	}
 
 	public void render()
@@ -139,4 +133,5 @@ public class Window
 	{
 		GLFW.glfwSwapBuffers(windowLong);
 	}
+	
 }

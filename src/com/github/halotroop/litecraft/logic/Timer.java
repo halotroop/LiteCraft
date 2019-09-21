@@ -3,17 +3,19 @@ package com.github.halotroop.litecraft.logic;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.lwjgl.glfw.GLFW;
+
 /*
  * @author Jack Wilsdon (Stack Exchange)
  * https://codereview.stackexchange.com/questions/111855/ticker-for-game-timing
  */
 public class Timer
 {
-	private long lastTick;
-	private long nextTick;
+	private double lastTick;
+	private double nextTick;
 	private int tickRate;
 	private Set<TickListener> tickListeners = new HashSet<>();
-
+	
 	public Timer(int tickRate)
 	{
 		this.tickRate = tickRate;
@@ -45,9 +47,9 @@ public class Timer
 		nextTick = 0;
 	}
 
-	public boolean update()
+	public boolean tick()
 	{
-		long currentTime = System.currentTimeMillis();
+		long currentTime = System.nanoTime();
 		if (currentTime >= nextTick)
 		{
 			long targetTimeDelta = 1000L / tickRate;
