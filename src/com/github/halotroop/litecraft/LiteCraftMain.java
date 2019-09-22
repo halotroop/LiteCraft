@@ -58,14 +58,13 @@ public class LiteCraftMain
 
 	private void init()
 	{
-		System.out.println("Initializing game.");
+		System.out.println("Initializing game...");
 		// Setup an error callback. The default implementation will print the error message in System.err.
 		GLFWErrorCallback.createPrint(System.err).set();
 		// Initialize GLFW. Most GLFW functions will not work before doing this.
 		if (!GLFW.glfwInit()) throw new IllegalStateException("Unable to initialize GLFW");
 		// Configure GLFW
 		window = new Window(width, height);
-		
 		
 		timer = new Timer(20);
 		timer.addTickListener(tickListener);
