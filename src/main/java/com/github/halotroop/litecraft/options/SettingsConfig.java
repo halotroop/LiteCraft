@@ -5,16 +5,19 @@ import org.aeonbits.owner.Config;
 @Config.Sources("file:~/Documents/LiteCraft.config")
 public interface SettingsConfig extends Config
 {
-	@Key("screen_width")
+	@Key("render.screen_width")
 	@DefaultValue("640")
 	public int screenWidth();
-	@Key("screen_height")
+	@Key("render.screen_height")
 	@DefaultValue("480")
 	public int screenHeight();
-	@Key("debug_mode")
+	@Key("render.max_fps")
+	@DefaultValue("60")
+	public int max_fps();
+	@Key("debug.debug_mode")
 	@DefaultValue("false")
 	public boolean debugMode();
-	@Key("spam_log")
+	@Key("debug.spam_log")
 	@DefaultValue("false")
 	public boolean spamLog();
 }

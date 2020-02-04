@@ -62,7 +62,7 @@ public class Window
 
 	// (Always useful to have simpler inputs, even if you only ever plan on using these once. Can be great for debugging, or just making life easier.
 	public Window()
-	{ this(1600, 900); }
+	{ this(640, 480); }
 
 	public Window(int width, int height)
 	{ this(width, height, "LiteCraft"); }
@@ -76,7 +76,7 @@ public class Window
 		// Thank you.
 	}
 
-	public void init()
+	private void init()
 	{
 		GLFW.glfwDefaultWindowHints();
 		GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, 1);

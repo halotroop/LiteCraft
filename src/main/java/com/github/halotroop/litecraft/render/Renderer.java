@@ -26,6 +26,7 @@ public class Renderer
 
 	public void render()
 	{
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, model.getVBO());
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, Vertex.SIZE * 4, 0);
@@ -39,10 +40,14 @@ public class Renderer
 
 	private void prepare()
 	{
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set the background color
+		GL11.glClearColor(96/255F, 26/255F, 108/255F, 0.0F); // Set the background color
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 	}
 
 	public void cleanUp()
-	{}
+	{
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		GL20.glDisableVertexAttribArray(0);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+	}
 }
