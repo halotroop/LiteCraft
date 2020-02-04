@@ -10,16 +10,12 @@ public class Window
 	private long windowLong = 0;
 
 	public long getWindowLong()
-	{
-		return windowLong;
-	}
+	{ return windowLong; }
 
 	private String title;
 
 	public String getWindowTitle()
-	{
-		return title;
-	}
+	{ return title; }
 
 	protected void setWindowTitle(String title)
 	{
@@ -31,14 +27,10 @@ public class Window
 	private int width, height;
 
 	public int getHeight()
-	{
-		return height;
-	}
+	{ return height; }
 
 	public int getWidth()
-	{
-		return width;
-	}
+	{ return width; }
 
 	public void setHeight(int height)
 	{
@@ -63,20 +55,18 @@ public class Window
 	}
 
 	public boolean shouldClose()
-	{
-		return GLFW.glfwWindowShouldClose(windowLong);
-	}
+	{ return GLFW.glfwWindowShouldClose(windowLong); }
 
-	private void closeWindow()
-	{
-		GLFW.glfwSetWindowShouldClose(windowLong, true);
-	}
+	public void closeWindow()
+	{ GLFW.glfwSetWindowShouldClose(windowLong, true); }
 
 	// (Always useful to have simpler inputs, even if you only ever plan on using these once. Can be great for debugging, or just making life easier.
 	public Window()
-	{this(1600, 900);}
+	{ this(1600, 900); }
+
 	public Window(int width, int height)
-	{this(width, height, "LiteCraft");}
+	{ this(width, height, "LiteCraft"); }
+
 	public Window(int width, int height, String title)
 	{
 		// Keep these in this order!
@@ -106,7 +96,7 @@ public class Window
 			GLFW.glfwShowWindow(windowLong); // Make the window visible
 		}
 	}
-	
+
 	public void destroy()
 	{
 		Callbacks.glfwFreeCallbacks(windowLong);
@@ -114,23 +104,14 @@ public class Window
 	}
 
 	public void render()
-	{
-		swapDisplayBuffers();
-	}
+	{ swapDisplayBuffers(); }
 
 	public void hide()
-	{
-		GLFW.glfwHideWindow(windowLong);
-	}
+	{ GLFW.glfwHideWindow(windowLong); }
 
 	public void show()
-	{
-		GLFW.glfwShowWindow(windowLong);
-	}
+	{ GLFW.glfwShowWindow(windowLong); }
 
 	private void swapDisplayBuffers()
-	{
-		GLFW.glfwSwapBuffers(windowLong);
-	}
-	
+	{ GLFW.glfwSwapBuffers(windowLong); }
 }

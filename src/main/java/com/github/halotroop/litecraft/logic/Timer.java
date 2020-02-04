@@ -3,8 +3,6 @@ package com.github.halotroop.litecraft.logic;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.lwjgl.glfw.GLFW;
-
 /*
  * @author Jack Wilsdon (Stack Exchange)
  * https://codereview.stackexchange.com/questions/111855/ticker-for-game-timing
@@ -15,31 +13,21 @@ public class Timer
 	private double nextTick;
 	private int tickRate;
 	private Set<TickListener> tickListeners = new HashSet<>();
-	
+
 	public Timer(int tickRate)
-	{
-		this.tickRate = tickRate;
-	}
+	{ this.tickRate = tickRate; }
 
 	public void addTickListener(TickListener listener)
-	{
-		tickListeners.add(listener);
-	}
+	{ tickListeners.add(listener); }
 
 	public void removeTickListener(TickListener listener)
-	{
-		tickListeners.remove(listener);
-	}
+	{ tickListeners.remove(listener); }
 
 	public void setTickRate(int tickRate)
-	{
-		this.tickRate = tickRate;
-	}
+	{ this.tickRate = tickRate; }
 
 	public int getTickRate()
-	{
-		return tickRate;
-	}
+	{ return tickRate; }
 
 	public void reset()
 	{
@@ -60,13 +48,16 @@ public class Timer
 			}
 			float deltaTime = (float) (currentTime - lastTick) / targetTimeDelta;
 			for (TickListener listener : tickListeners)
-			{
-				listener.onTick(deltaTime);
-			}
+			{ listener.onTick(deltaTime); }
 			lastTick = currentTime;
 			nextTick = currentTime + targetTimeDelta;
 			return true;
 		}
 		return false;
+	}
+	
+	public interface TickListener
+	{
+		void onTick(float deltaTime);
 	}
 }
