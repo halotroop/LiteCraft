@@ -1,7 +1,9 @@
-![GPLv3 or later](https://www.gnu.org/graphics/gplv3-or-later.png "GPLv3-plus Logo")
+![Discord](https://img.shields.io/discord/624100926054989834?color=red&label=discord&style=social)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/halotroop/LiteCraft)
+![GitHub issues](https://img.shields.io/github/issues/halotroop/LiteCraft)
 
 # LiteCraft
-A lightweight, singleplayer only Minecraft clone <br />
+A lightweight, singleplayer only Minecraft clone
 
 #### Goals:
  - Learn the (old) Minecraft codebase inside and out
@@ -22,4 +24,5 @@ A lightweight, singleplayer only Minecraft clone <br />
  
 # LICENSE
 This project is licensed under the GNU General Public License Version 3.0<br />
-For details see [LICENSE](https://github.com/halotroop/LiteCraft/blob/master/LICENSE)
+For details see [LICENSE](https://github.com/halotroop/LiteCraft/blob/master/LICENSE)<br />
+![GPLv3 or later](https://www.gnu.org/graphics/gplv3-or-later.png "GPLv3-plus Logo")
