@@ -5,18 +5,15 @@ import java.nio.IntBuffer;
 import org.lwjgl.glfw.*;
 import org.lwjgl.system.MemoryStack;
 
+import com.github.halotroop.litecraft.input.*;
+
 public class Window
 {
 	private long windowLong = 0;
-
-	public long getWindowLong()
-	{ return windowLong; }
+	public long getWindowId() { return windowLong; }
 
 	private String title;
-
-	public String getWindowTitle()
-	{ return title; }
-
+	public String getWindowTitle() { return title; }
 	protected void setWindowTitle(String title)
 	{
 		this.title = title;
@@ -25,27 +22,22 @@ public class Window
 	}
 
 	private int width, height;
-
 	public int getHeight()
 	{ return height; }
-
 	public int getWidth()
 	{ return width; }
-
 	public void setHeight(int height)
 	{
 		this.height = height;
 		if (windowLong != 0)
 			GLFW.glfwSetWindowSize(windowLong, getWidth(), getHeight());
 	}
-
 	public void setWidth(int width)
 	{
 		this.width = width;
 		if (windowLong != 0)
 			GLFW.glfwSetWindowSize(windowLong, getWidth(), getHeight());
 	}
-
 	public void setWidthAndHeight(int width, int height)
 	{
 		this.width = width;
@@ -89,14 +81,21 @@ public class Window
 		{
 			IntBuffer pWidth = stack.mallocInt(1);
 			IntBuffer pHeight = stack.mallocInt(1);
-			GLFW.glfwGetWindowSize(windowLong, pWidth, pHeight); // Get the windowLong size passed to glfwCreateWindow
-			GLFWVidMode vidmode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor()); // Get the resolution of the primary monitor
-			GLFW.glfwSetWindowPos(windowLong, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2); // Center the window
-			GLFW.glfwMakeContextCurrent(windowLong); // Make the OpenGL context current
-			GLFW.glfwShowWindow(windowLong); // Make the window visible
+			GLFW.glfwGetWindowSize(windowLong, pWidth, pHeight);
+			GLFWVidMode vidmode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
+			GLFW.glfwSetWindowPos(windowLong, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2);
+			GLFW.glfwMakeContextCurrent(windowLong);
+			GLFW.glfwShowWindow(windowLong);
+			createCallbacks();
 		}
 	}
 
+	private void createCallbacks()
+	{
+		KeyCallbackHandler.trackWindow(windowLong);
+		MouseCallbackHandler.trackWindow(windowLong);
+	}
+	
 	public void destroy()
 	{
 		Callbacks.glfwFreeCallbacks(windowLong);

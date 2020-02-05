@@ -12,6 +12,8 @@ import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
+import com.github.halotroop.litecraft.input.Input;
+import com.github.halotroop.litecraft.input.Keybind;
 import com.github.halotroop.litecraft.logic.Timer;
 import com.github.halotroop.litecraft.logic.Timer.TickListener;
 import com.github.halotroop.litecraft.options.SettingsConfig;
@@ -20,15 +22,15 @@ import com.github.halotroop.litecraft.render.Renderer;
 
 public class LiteCraftMain implements Runnable
 {
-	public Logger logger = Logger.getLogger(Logger.class.getName());
+	public static Logger logger = Logger.getLogger(Logger.class.getName());
 	private static SettingsConfig config;
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
 	public String splashText = "";
 	private int fps, ups, tps;
 	private long frameTimer;
-	private Renderer renderer;
-	private Window window;
+	private static Renderer renderer;
+	private static Window window;
 	protected Timer timer;
 	protected TickListener tickListener = new TickListener()
 	{
@@ -73,17 +75,18 @@ public class LiteCraftMain implements Runnable
 
 	private void init()
 	{
+		// Leave this alone.
 		logger.setLevel(debug ? Level.ALL : Level.INFO);
-		// Setup an error callback. The default implementation will print the error message in System.err.
 		GLFWErrorCallback.createPrint(System.err).set();
-		// Initialize GLFW. Most GLFW functions will not work before doing this.
 		if (!GLFW.glfwInit()) throw new IllegalStateException("Unable to initialize GLFW");
-		// Configure GLFW
 		window = new Window(width, height);
-		timer = new Timer(20);
-		timer.addTickListener(tickListener);
+		// Please and thank you. :)
+
 		GL.createCapabilities(); // This line is critical for LWJGL's interoperation with GLFW.
 		renderer = new Renderer();
+		timer = new Timer(20);
+		timer.addTickListener(tickListener);
+		
 		try
 		{
 			String[] splashes = TextFileReader.readFileToStringArray("text/splashes.txt");
@@ -98,12 +101,7 @@ public class LiteCraftMain implements Runnable
 	// Sets up the key inputs for the game (currently just esc for closing the game)
 	public void input()
 	{
-		// A temporary key callback. It will tell GLFW to close the window whenever we press escape
-		GLFW.glfwSetKeyCallback(window.getWindowId(), (window, key, scancode, action, mods) ->
-		{
-			if (key == GLFW.GLFW_KEY_ESCAPE && action == GLFW.GLFW_RELEASE)
-				GLFW.glfwSetWindowShouldClose(window, true); // We will detect this in the game loop
-		});
+		Input.addPressCallback(Keybind.EXIT, LiteCraftMain::shutDown);
 	}
 
 	// Things that the game should do over and over and over again until it is closed
@@ -112,6 +110,7 @@ public class LiteCraftMain implements Runnable
 		ups++;
 		// Poll for window events. The key callback above will only be invoked during this call.
 		GLFW.glfwPollEvents();
+		Input.invokeAllListeners();
 		timer.tick();
 		if (fps < maxFPS || !limitFPS) render();
 		if (System.currentTimeMillis() > frameTimer + 1000) // wait for one second
@@ -143,7 +142,7 @@ public class LiteCraftMain implements Runnable
 	}
 
 	// Shuts down the game and destroys all the things that are using RAM (so the user doesn't have to restart their computer afterward...)
-	private void shutDown()
+	private static void shutDown()
 	{
 		logger.log(Level.DEBUG, "Closing game...");
 		renderer.cleanUp();
