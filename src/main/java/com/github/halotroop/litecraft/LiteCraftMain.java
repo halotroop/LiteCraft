@@ -1,7 +1,13 @@
 package com.github.halotroop.litecraft;
 
+import org.apache.log4j.Logger;
+
+import java.io.IOException;
+import java.util.Random;
+
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.cli.*;
+import org.apache.log4j.Level;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -14,19 +20,23 @@ import com.github.halotroop.litecraft.render.Renderer;
 
 public class LiteCraftMain implements Runnable
 {
+	public Logger logger = Logger.getLogger(Logger.class.getName());
 	private static SettingsConfig config;
-	private static boolean limitFPS = false;
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
-	public static boolean spamLog, debug;
+	public static boolean spamLog = false, debug = false, limitFPS = false;
 	public String splashText = "";
-
-	protected Timer timer;
 	private int fps, ups, tps;
 	private long frameTimer;
 	private Renderer renderer;
-
 	private Window window;
-	
+	protected Timer timer;
+	protected TickListener tickListener = new TickListener()
+	{
+		@Override
+		public void onTick(float deltaTime)
+		{ tps++; }
+	};
+
 	public static void main(String[] args) throws Exception
 	{
 		try
@@ -43,7 +53,6 @@ public class LiteCraftMain implements Runnable
 			System.err.println("Config failed to load.");
 			e.printStackTrace();
 		}
-		
 		try
 		{
 			Options options = SettingsHandler.createCommandLineOptions();
@@ -56,21 +65,15 @@ public class LiteCraftMain implements Runnable
 			limitFPS = Boolean.parseBoolean(cmd.getOptionValue("limit_fps", "false"));
 		}
 		catch (ParseException e)
-		{ e.printStackTrace(); }
-		
+		{
+			e.printStackTrace();
+		}
 		new LiteCraftMain().run();
 	}
-	
-	protected TickListener tickListener = new TickListener()
-	{
-		@Override
-		public void onTick(float deltaTime)
-		{ tps++; }
-	};
 
 	private void init()
 	{
-		if (debug) System.out.println("Initializing game...");
+		logger.setLevel(debug ? Level.ALL : Level.INFO);
 		// Setup an error callback. The default implementation will print the error message in System.err.
 		GLFWErrorCallback.createPrint(System.err).set();
 		// Initialize GLFW. Most GLFW functions will not work before doing this.
@@ -80,21 +83,23 @@ public class LiteCraftMain implements Runnable
 		timer = new Timer(20);
 		timer.addTickListener(tickListener);
 		GL.createCapabilities(); // This line is critical for LWJGL's interoperation with GLFW.
-		renderer = new Renderer(); 
-		if (splashText == "")
+		renderer = new Renderer();
+		try
 		{
-			splashText = "INSERT SPLASH TEXT HERE!";
+			String[] splashes = TextFileReader.readFileToStringArray("text/splashes.txt");
+			splashText = splashes[new Random().nextInt(splashes.length)];
 		}
-		window.setWindowTitle("LiteCraft - " + splashText);
+		catch (IOException e)
+		{ e.printStackTrace(); }
+		window.setWindowTitle("LiteCraft - " + ((splashText == "" || splashText == null) ? "INSERT SPLASH TEXT HERE!" : splashText));
 		input();
-		if (debug) System.out.println("Initialization complete.");
 	}
 
 	// Sets up the key inputs for the game (currently just esc for closing the game)
 	public void input()
 	{
 		// A temporary key callback. It will tell GLFW to close the window whenever we press escape
-		GLFW.glfwSetKeyCallback(window.getWindowLong(), (window, key, scancode, action, mods) ->
+		GLFW.glfwSetKeyCallback(window.getWindowId(), (window, key, scancode, action, mods) ->
 		{
 			if (key == GLFW.GLFW_KEY_ESCAPE && action == GLFW.GLFW_RELEASE)
 				GLFW.glfwSetWindowShouldClose(window, true); // We will detect this in the game loop
@@ -111,7 +116,6 @@ public class LiteCraftMain implements Runnable
 		if (fps < maxFPS || !limitFPS) render();
 		if (System.currentTimeMillis() > frameTimer + 1000) // wait for one second
 		{
-			if (debug) window.setWindowTitle("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
 			fps = 0;
 			ups = 0;
 			tps = 0;
@@ -121,6 +125,7 @@ public class LiteCraftMain implements Runnable
 
 	public void render()
 	{
+		if (debug) window.setWindowTitle("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
 		renderer.render();
 		window.render();
 		fps++; // After a successful frame render, increase the frame counter.
@@ -128,26 +133,25 @@ public class LiteCraftMain implements Runnable
 
 	public void run()
 	{
-		System.out.println("Starting game...");
-		System.out.println("LWJGL version: " + Version.getVersion());
-		System.out.println("Resolution: " + width + 'x' + height);
+		System.out.println("Starting game..." + "\n" + "LWJGL version: " + Version.getVersion() + "\n" + "Resolution: " + width + 'x' + height);
 		init();
 		frameTimer = System.currentTimeMillis();
 		// Run the rendering loop until the player has attempted to close the window
-		while (!GLFW.glfwWindowShouldClose(window.getWindowLong()))
+		while (!GLFW.glfwWindowShouldClose(window.getWindowId()))
 		{ loop(); }
-		destroy();
+		shutDown();
 	}
-	
+
 	// Shuts down the game and destroys all the things that are using RAM (so the user doesn't have to restart their computer afterward...)
-	private void destroy()
+	private void shutDown()
 	{
-		if (debug) System.out.println("Closing game...");
+		logger.log(Level.DEBUG, "Closing game...");
 		renderer.cleanUp();
 		window.destroy();
 		// Terminate GLFW and free the error callback
 		GLFW.glfwTerminate();
 		GLFW.glfwSetErrorCallback(null).free();
-		if (debug) System.out.println("Game closed successfully.");
+		System.out.println("Game closed successfully.");
+		System.exit(0);
 	}
 }
