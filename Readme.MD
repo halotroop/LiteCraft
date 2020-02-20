@@ -1,6 +1,6 @@
 ![Discord](https://img.shields.io/discord/624100926054989834?color=red&label=discord&style=social)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/halotroop/LiteCraft)
-![GitHub issues](https://img.shields.io/github/issues/halotroop/LiteCraft)
+![Commit activity](https://img.shields.io/github/commit-activity/m/halotroop/litecraft)
+![Issues](https://img.shields.io/github/issues/halotroop/LiteCraft)
 
 # LiteCraft
 A lightweight, singleplayer only Minecraft clone
