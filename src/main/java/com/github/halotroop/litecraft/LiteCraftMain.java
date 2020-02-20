@@ -1,24 +1,32 @@
 package com.github.halotroop.litecraft;
 
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.util.Random;
 
 import org.aeonbits.owner.ConfigFactory;
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Level;
-import org.lwjgl.*;
-import org.lwjgl.glfw.*;
-import org.lwjgl.opengl.*;
+import org.apache.log4j.Logger;
+import org.lwjgl.Version;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWErrorCallback;
 
+import com.github.halotroop.litecraft.blaze4D.RenderWrapper;
 import com.github.halotroop.litecraft.input.Input;
 import com.github.halotroop.litecraft.input.Keybind;
 import com.github.halotroop.litecraft.logic.Timer;
 import com.github.halotroop.litecraft.logic.Timer.TickListener;
 import com.github.halotroop.litecraft.options.SettingsConfig;
 import com.github.halotroop.litecraft.options.SettingsHandler;
-import com.github.halotroop.litecraft.render.Renderer;
+
+import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
+import io.github.hydos.ginger.engine.io.Window;
+import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.obj.ModelLoader;
+import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
 
 public class LiteCraftMain implements Runnable
 {
@@ -29,8 +37,6 @@ public class LiteCraftMain implements Runnable
 	public String splashText = "";
 	private int fps, ups, tps;
 	private long frameTimer;
-	private static Renderer renderer;
-	private static Window window;
 	protected Timer timer;
 	protected TickListener tickListener = new TickListener()
 	{
@@ -79,11 +85,7 @@ public class LiteCraftMain implements Runnable
 		logger.setLevel(debug ? Level.ALL : Level.INFO);
 		GLFWErrorCallback.createPrint(System.err).set();
 		if (!GLFW.glfwInit()) throw new IllegalStateException("Unable to initialize GLFW");
-		window = new Window(width, height);
-		// Please and thank you. :)
-
-		GL.createCapabilities(); // This line is critical for LWJGL's interoperation with GLFW.
-		renderer = new Renderer();
+		
 		timer = new Timer(20);
 		timer.addTickListener(tickListener);
 		
@@ -94,7 +96,20 @@ public class LiteCraftMain implements Runnable
 		}
 		catch (IOException e)
 		{ e.printStackTrace(); }
-		window.setWindowTitle("LiteCraft - " + ((splashText == "" || splashText == null) ? "INSERT SPLASH TEXT HERE!" : splashText));
+		
+		//because someone has not made player models and im lazy lets use the ones bundeled with the engine :)
+		
+		RenderWrapper.preInit();
+		
+		TexturedModel tModel = ModelLoader.loadModel("stall.obj", "stallTexture.png");
+		tModel.getTexture().setReflectivity(1f);
+		tModel.getTexture().setShineDamper(7f);
+		RenderPlayer renderPlayer = new RenderPlayer(tModel, new Vector3f(0,0,-3),0,180f,0, new Vector3f(0.2f, 0.2f, 0.2f));
+		
+		RenderWrapper.init(splashText, renderPlayer);
+		
+		
+//		window.setWindowTitle("LiteCraft - " + ((splashText == "" || splashText == null) ? "INSERT SPLASH TEXT HERE!" : splashText));
 		input();
 	}
 
@@ -124,9 +139,8 @@ public class LiteCraftMain implements Runnable
 
 	public void render()
 	{
-		if (debug) window.setWindowTitle("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
-		renderer.render();
-		window.render();
+//		if (debug) window.setWindowTitle("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
+		RenderWrapper.render();
 		fps++; // After a successful frame render, increase the frame counter.
 	}
 
@@ -136,8 +150,12 @@ public class LiteCraftMain implements Runnable
 		init();
 		frameTimer = System.currentTimeMillis();
 		// Run the rendering loop until the player has attempted to close the window
-		while (!GLFW.glfwWindowShouldClose(window.getWindowId()))
-		{ loop(); }
+		while(!Window.closed()) {
+			
+			if(Window.isUpdating()) {
+				loop();
+			}
+		}
 		shutDown();
 	}
 
@@ -145,11 +163,7 @@ public class LiteCraftMain implements Runnable
 	private static void shutDown()
 	{
 		logger.log(Level.DEBUG, "Closing game...");
-		renderer.cleanUp();
-		window.destroy();
-		// Terminate GLFW and free the error callback
-		GLFW.glfwTerminate();
-		GLFW.glfwSetErrorCallback(null).free();
+		RenderWrapper.cleanup();
 		System.out.println("Game closed successfully.");
 		System.exit(0);
 	}
