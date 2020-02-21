@@ -4,7 +4,6 @@ import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 
 public class FirstPersonCamera
 {
