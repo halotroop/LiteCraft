@@ -1,7 +1,9 @@
-package com.github.halotroop.litecraft.blaze4D;
+package com.github.halotroop.litecraft.render;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.halotroop.litecraft.LiteCraftMain;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.GuiTexture;
@@ -24,22 +26,20 @@ import io.github.hydos.ginger.main.GingerMain;
 
 public class RenderWrapper
 {
-	private static MasterRenderer masterRenderer4D;
+	private static MasterRenderer masterRenderer;
 	public static List<Entity> entities = new ArrayList<Entity>();
 	public static List<GuiTexture> guis = new ArrayList<GuiTexture>();
 	public static List<Light> lights = new ArrayList<Light>();
 	public static ThirdPersonCamera camera;
 	private static final List<Terrain> TERRAIN = new ArrayList<Terrain>();
 	private static final List<Entity> NORMAL_ENTITY = new ArrayList<Entity>();
-	private static String splash = "WILL ADD THIS LATER";
 
 	public static void init(String splash, RenderPlayer renderPlayer)
 	{
 		camera = new ThirdPersonCamera(new Vector3f(0, 0.1f, 0), renderPlayer);
-		RenderWrapper.splash = splash;
 		Window.setBackgroundColour(0.2f, 0.2f, 0.6f);
-		masterRenderer4D = new MasterRenderer(camera);
-		ParticleMaster.init(masterRenderer4D.getProjectionMatrix());
+		masterRenderer = new MasterRenderer(camera);
+		ParticleMaster.init(masterRenderer.getProjectionMatrix());
 		PostProcessing.init();
 	}
 
@@ -48,7 +48,7 @@ public class RenderWrapper
 		Window.stop();
 		PostProcessing.cleanUp();
 		ParticleMaster.cleanUp();
-		masterRenderer4D.cleanUp();
+		masterRenderer.cleanUp();
 		TextMaster.cleanUp();
 		Loader.cleanUp();
 		System.exit(0);
@@ -58,17 +58,17 @@ public class RenderWrapper
 	{
 		Window.update();
 		GingerMain.update();
-		GingerMain.preRenderScene(masterRenderer4D);
-		masterRenderer4D.renderScene(entities, NORMAL_ENTITY, TERRAIN, lights, camera, new Vector4f(0, -1, 0, 100000));
+		GingerMain.preRenderScene(masterRenderer);
+		masterRenderer.renderScene(entities, NORMAL_ENTITY, TERRAIN, lights, camera, new Vector4f(0, -1, 0, 100000));
 		ParticleMaster.renderParticles(camera);
-		masterRenderer4D.renderGuis(guis);
+		masterRenderer.renderGuis(guis);
 		TextMaster.render();
 		Window.swapBuffers();
 	}
 
 	public static void preInit()
 	{
-		Window.create(2000, 1200, "LiteCraft - " + splash, 60);
+		Window.create(LiteCraftMain.width, LiteCraftMain.height, "LiteCraft - " + LiteCraftMain.splashText, 60);
 		GingerMain.init();
 	}
 

@@ -14,13 +14,13 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 
-import com.github.halotroop.litecraft.blaze4D.RenderWrapper;
 import com.github.halotroop.litecraft.input.Input;
 import com.github.halotroop.litecraft.input.Keybind;
 import com.github.halotroop.litecraft.logic.Timer;
 import com.github.halotroop.litecraft.logic.Timer.TickListener;
 import com.github.halotroop.litecraft.options.SettingsConfig;
 import com.github.halotroop.litecraft.options.SettingsHandler;
+import com.github.halotroop.litecraft.render.RenderWrapper;
 
 import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
 import io.github.hydos.ginger.engine.io.Window;
@@ -34,7 +34,7 @@ public class LiteCraftMain implements Runnable
 	private static SettingsConfig config;
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
-	public String splashText = "";
+	public static String splashText = "";
 	private int fps, ups, tps;
 	private long frameTimer;
 	protected Timer timer;
