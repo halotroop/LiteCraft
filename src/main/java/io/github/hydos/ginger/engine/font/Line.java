@@ -1,7 +1,6 @@
 package io.github.hydos.ginger.engine.font;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /** Represents a line of text during the loading of a text.
  * 

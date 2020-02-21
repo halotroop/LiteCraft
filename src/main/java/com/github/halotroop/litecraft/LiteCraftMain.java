@@ -4,25 +4,16 @@ import java.io.IOException;
 import java.util.Random;
 
 import org.aeonbits.owner.ConfigFactory;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.commons.cli.*;
+import org.apache.logging.log4j.*;
 import org.joml.Vector3f;
 import org.lwjgl.Version;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.*;
 
-import com.github.halotroop.litecraft.input.Input;
-import com.github.halotroop.litecraft.input.KeyCallbackHandler;
-import com.github.halotroop.litecraft.input.Keybind;
-import com.github.halotroop.litecraft.input.MouseCallbackHandler;
+import com.github.halotroop.litecraft.input.*;
 import com.github.halotroop.litecraft.logic.Timer;
 import com.github.halotroop.litecraft.logic.Timer.TickListener;
-import com.github.halotroop.litecraft.options.SettingsConfig;
-import com.github.halotroop.litecraft.options.SettingsHandler;
+import com.github.halotroop.litecraft.options.*;
 import com.github.halotroop.litecraft.render.RenderWrapper;
 
 import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
@@ -32,7 +23,7 @@ import io.github.hydos.ginger.engine.render.models.TexturedModel;
 
 public class LiteCraftMain implements Runnable
 {
-	public static Logger logger = Logger.getLogger(Logger.class.getName());
+	public static Logger logger = LogManager.getLogger(Logger.class.getName());
 	private static SettingsConfig config;
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
@@ -85,49 +76,40 @@ public class LiteCraftMain implements Runnable
 	private void init()
 	{
 		// Leave this alone.
-		logger.setLevel(debug ? Level.ALL : Level.INFO);
 		GLFWErrorCallback.createPrint(System.err).set();
 		if (!GLFW.glfwInit()) throw new IllegalStateException("Unable to initialize GLFW");
-		
 		timer = new Timer(20);
 		timer.addTickListener(tickListener);
-		
 		try
 		{
 			String[] splashes = TextFileReader.readFileToStringArray("text/splashes.txt");
 			splashText = splashes[new Random().nextInt(splashes.length)];
 		}
 		catch (IOException e)
-		{ e.printStackTrace(); }
-		
+		{
+			e.printStackTrace();
+		}
 		//because someone has not made player models and im lazy lets use the ones bundeled with the engine :)
-		
 		RenderWrapper.preInit();
-		
 		TexturedModel tModel = ModelLoader.loadModel("stall.obj", "stallTexture.png");
 		tModel.getTexture().setReflectivity(1f);
 		tModel.getTexture().setShineDamper(7f);
-		RenderPlayer renderPlayer = new RenderPlayer(tModel, new Vector3f(0,0,-3),0,180f,0, new Vector3f(0.2f, 0.2f, 0.2f));
-		
+		RenderPlayer renderPlayer = new RenderPlayer(tModel, new Vector3f(0, 0, -3), 0, 180f, 0, new Vector3f(0.2f, 0.2f, 0.2f));
 		RenderWrapper.init(splashText, renderPlayer);
-		
 		long windowId = Window.window;
 		KeyCallbackHandler.trackWindow(windowId);
 		MouseCallbackHandler.trackWindow(windowId);
-//		window.setWindowTitle("LiteCraft - " + ((splashText == "" || splashText == null) ? "INSERT SPLASH TEXT HERE!" : splashText));
+		//		window.setWindowTitle("LiteCraft - " + ((splashText == "" || splashText == null) ? "INSERT SPLASH TEXT HERE!" : splashText));
 		input();
 	}
 
 	// Sets up the key inputs for the game (currently just esc for closing the game)
 	public void input()
-	{
-		Input.addPressCallback(Keybind.EXIT, LiteCraftMain::shutDown);
-	}
+	{ Input.addPressCallback(Keybind.EXIT, LiteCraftMain::shutDown); }
 
 	// Things that the game should do over and over and over again until it is closed
 	private void loop()
 	{
-		
 		ups++;
 		// Poll for window events. The key callback above will only be invoked during this call.
 		GLFW.glfwPollEvents();
@@ -157,11 +139,10 @@ public class LiteCraftMain implements Runnable
 		init();
 		frameTimer = System.currentTimeMillis();
 		// Run the rendering loop until the player has attempted to close the window
-		while(!Window.closed()) {
-			
-			if(Window.isUpdating()) {
-				loop();
-			}
+		while (!Window.closed())
+		{
+			if (Window.isUpdating())
+			{ loop(); }
 		}
 		shutDown();
 	}

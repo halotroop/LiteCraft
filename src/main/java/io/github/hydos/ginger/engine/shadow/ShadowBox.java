@@ -1,8 +1,8 @@
 package io.github.hydos.ginger.engine.shadow;
 
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
+import java.lang.Math;
+
+import org.joml.*;
 
 import com.github.halotroop.litecraft.LiteCraftMain;
 
@@ -146,7 +146,6 @@ public class ShadowBox
 		Vector3f centerNear, Vector3f centerFar)
 	{
 		Matrix4f upMatrix = rotation;
-		
 		Vector3f upVector = Maths.Vec4ToVec3(upMatrix.transform(UP));
 		Vector3f rightVector = new Vector3f().cross(forwardVector, upVector);
 		Vector3f downVector = new Vector3f(-upVector.x, -upVector.y, -upVector.z);

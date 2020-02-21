@@ -1,9 +1,8 @@
 package io.github.hydos.ginger.engine.math;
 
-import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
+import java.lang.Math;
+
+import org.joml.*;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 
@@ -65,18 +64,19 @@ public class Maths
 		return matrix;
 	}
 
-	public static Vector3f Vec4ToVec3(Vector4f eyeSpacePos) {
+	public static Vector3f Vec4ToVec3(Vector4f eyeSpacePos)
+	{
 		Vector3f vec3 = new Vector3f();
 		vec3.x = eyeSpacePos.x;
 		vec3.y = eyeSpacePos.y;
 		vec3.z = eyeSpacePos.z;
-		
 		return vec3;
 	}
 
-	public static void scale(Vector3f change, float time) {
-		change.x = change.x*time;
-		change.y = change.y*time;
-		change.x = change.x*time;
+	public static void scale(Vector3f change, float time)
+	{
+		change.x = change.x * time;
+		change.y = change.y * time;
+		change.x = change.x * time;
 	}
 }

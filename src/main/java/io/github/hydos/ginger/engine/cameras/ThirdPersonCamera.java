@@ -1,8 +1,7 @@
 package io.github.hydos.ginger.engine.cameras;
 
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWScrollCallback;
+import org.lwjgl.glfw.*;
 
 import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
 import io.github.hydos.ginger.engine.io.Window;

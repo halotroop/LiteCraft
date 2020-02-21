@@ -1,13 +1,9 @@
 package io.github.hydos.ginger.engine.obj;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.*;
 
 public class OBJFileLoader
 {

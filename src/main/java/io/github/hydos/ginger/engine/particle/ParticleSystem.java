@@ -1,10 +1,9 @@
 package io.github.hydos.ginger.engine.particle;
 
+import java.lang.Math;
 import java.util.Random;
 
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
+import org.joml.*;
 
 import io.github.hydos.ginger.engine.io.Window;
 import io.github.hydos.ginger.engine.math.Maths;

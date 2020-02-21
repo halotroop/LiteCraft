@@ -1,7 +1,6 @@
 package io.github.hydos.ginger.engine.font;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /** During the loading of a text this represents one word in the text. */
 public class Word

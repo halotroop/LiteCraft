@@ -1,31 +1,20 @@
 package io.github.hydos.ginger.engine.render;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.Math;
+import java.util.*;
 
-import org.joml.Matrix4f;
-import org.joml.Vector4f;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
+import org.joml.*;
+import org.lwjgl.opengl.*;
 
 import com.github.halotroop.litecraft.LiteCraftMain;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.GuiTexture;
-import io.github.hydos.ginger.engine.elements.objects.Entity;
-import io.github.hydos.ginger.engine.elements.objects.Light;
+import io.github.hydos.ginger.engine.elements.objects.*;
 import io.github.hydos.ginger.engine.io.Window;
 import io.github.hydos.ginger.engine.render.models.TexturedModel;
-import io.github.hydos.ginger.engine.render.renderers.EntityRenderer;
-import io.github.hydos.ginger.engine.render.renderers.GuiRenderer;
-import io.github.hydos.ginger.engine.render.renderers.NormalMappingRenderer;
-import io.github.hydos.ginger.engine.render.renderers.SkyboxRenderer;
-import io.github.hydos.ginger.engine.render.renderers.TerrainRenderer;
-import io.github.hydos.ginger.engine.render.shaders.GuiShader;
-import io.github.hydos.ginger.engine.render.shaders.StaticShader;
-import io.github.hydos.ginger.engine.render.shaders.TerrainShader;
+import io.github.hydos.ginger.engine.render.renderers.*;
+import io.github.hydos.ginger.engine.render.shaders.*;
 import io.github.hydos.ginger.engine.shadow.ShadowMapMasterRenderer;
 import io.github.hydos.ginger.engine.terrain.Terrain;
 

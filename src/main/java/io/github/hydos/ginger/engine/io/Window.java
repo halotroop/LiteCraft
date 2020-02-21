@@ -1,17 +1,11 @@
 package io.github.hydos.ginger.engine.io;
 
-import java.nio.DoubleBuffer;
-import java.nio.IntBuffer;
+import java.nio.*;
 
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.*;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWImage;
-import org.lwjgl.glfw.GLFWVidMode;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLCapabilities;
+import org.lwjgl.glfw.*;
+import org.lwjgl.opengl.*;
 
 import com.github.halotroop.litecraft.LiteCraftMain;
 

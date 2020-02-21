@@ -1,7 +1,8 @@
 package io.github.hydos.ginger.engine.particle;
 
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import java.lang.Math;
+
+import org.joml.*;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.io.Window;

@@ -6,8 +6,7 @@ import io.github.hydos.ginger.engine.font.TextMaster;
 import io.github.hydos.ginger.engine.obj.ModelLoader;
 import io.github.hydos.ginger.engine.obj.normals.NormalMappedObjLoader;
 import io.github.hydos.ginger.engine.render.MasterRenderer;
-import io.github.hydos.ginger.engine.render.models.RawModel;
-import io.github.hydos.ginger.engine.render.models.TexturedModel;
+import io.github.hydos.ginger.engine.render.models.*;
 import io.github.hydos.ginger.engine.render.texture.ModelTexture;
 
 public class GingerMain

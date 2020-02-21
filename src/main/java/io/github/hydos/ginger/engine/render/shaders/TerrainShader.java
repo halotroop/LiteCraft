@@ -2,8 +2,7 @@ package io.github.hydos.ginger.engine.render.shaders;
 
 import java.util.List;
 
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
+import org.joml.*;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.objects.Light;

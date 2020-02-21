@@ -1,22 +1,16 @@
 package io.github.hydos.ginger.engine.render.renderers;
 
+import java.lang.Math;
 import java.nio.FloatBuffer;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
+import org.joml.*;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
-import org.lwjgl.opengl.GL31;
+import org.lwjgl.opengl.*;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.math.Maths;
-import io.github.hydos.ginger.engine.particle.Particle;
-import io.github.hydos.ginger.engine.particle.ParticleTexture;
+import io.github.hydos.ginger.engine.particle.*;
 import io.github.hydos.ginger.engine.render.models.RawModel;
 import io.github.hydos.ginger.engine.render.shaders.ParticleShader;
 import io.github.hydos.ginger.engine.utils.Loader;

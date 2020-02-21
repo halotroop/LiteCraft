@@ -1,15 +1,10 @@
 package io.github.hydos.ginger.engine.render.renderers;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
+import org.lwjgl.opengl.*;
 
-import io.github.hydos.ginger.engine.font.FontType;
-import io.github.hydos.ginger.engine.font.GUIText;
+import io.github.hydos.ginger.engine.font.*;
 import io.github.hydos.ginger.engine.render.shaders.FontShader;
 
 public class FontRenderer

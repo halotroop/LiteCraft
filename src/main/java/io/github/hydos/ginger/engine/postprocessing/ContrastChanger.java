@@ -1,7 +1,6 @@
 package io.github.hydos.ginger.engine.postprocessing;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.*;
 
 public class ContrastChanger
 {

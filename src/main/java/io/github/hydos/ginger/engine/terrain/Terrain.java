@@ -2,11 +2,11 @@ package io.github.hydos.ginger.engine.terrain;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.Math;
 
 import javax.imageio.ImageIO;
 
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.*;
 
 import io.github.hydos.ginger.engine.math.Maths;
 import io.github.hydos.ginger.engine.render.models.RawModel;

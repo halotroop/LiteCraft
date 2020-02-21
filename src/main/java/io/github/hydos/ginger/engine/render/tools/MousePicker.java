@@ -1,9 +1,6 @@
 package io.github.hydos.ginger.engine.render.tools;
 
-import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
+import org.joml.*;
 
 import com.github.halotroop.litecraft.LiteCraftMain;
 

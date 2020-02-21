@@ -1,7 +1,6 @@
 package com.github.halotroop.litecraft.logic;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /*
  * @author Jack Wilsdon (Stack Exchange)

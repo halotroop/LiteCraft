@@ -1,24 +1,14 @@
 package io.github.hydos.ginger.engine.utils;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.*;
+import java.util.*;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.EXTTextureFilterAnisotropic;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL14;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
-import org.lwjgl.opengl.GL33;
+import org.lwjgl.opengl.*;
 
 import io.github.hydos.ginger.engine.io.Window;
 import io.github.hydos.ginger.engine.render.models.RawModel;
-import io.github.hydos.ginger.engine.render.texture.Image;
-import io.github.hydos.ginger.engine.render.texture.ModelTexture;
+import io.github.hydos.ginger.engine.render.texture.*;
 import io.github.hydos.ginger.engine.terrain.TerrainTexture;
 
 public class Loader

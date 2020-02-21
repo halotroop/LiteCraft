@@ -4,6 +4,7 @@ import org.joml.Matrix4f;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.math.Maths;
+
 public class SkyboxShader extends ShaderProgram
 {
 	private int location_projectionMatrix;

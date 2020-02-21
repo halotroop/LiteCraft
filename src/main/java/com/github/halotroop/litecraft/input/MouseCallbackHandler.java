@@ -1,7 +1,6 @@
 package com.github.halotroop.litecraft.input;
 
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWMouseButtonCallback;
+import org.lwjgl.glfw.*;
 
 /*
  * Author: Valoeghese

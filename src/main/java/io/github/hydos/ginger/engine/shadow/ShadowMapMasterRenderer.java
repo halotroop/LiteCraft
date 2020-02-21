@@ -1,16 +1,13 @@
 package io.github.hydos.ginger.engine.shadow;
 
-import java.util.List;
-import java.util.Map;
+import java.lang.Math;
+import java.util.*;
 
-import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.*;
 import org.lwjgl.opengl.GL11;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
-import io.github.hydos.ginger.engine.elements.objects.Entity;
-import io.github.hydos.ginger.engine.elements.objects.Light;
+import io.github.hydos.ginger.engine.elements.objects.*;
 import io.github.hydos.ginger.engine.render.models.TexturedModel;
 
 /** This class is in charge of using all of the classes in the shadows package to

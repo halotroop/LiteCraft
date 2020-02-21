@@ -1,23 +1,16 @@
 package io.github.hydos.ginger.engine.render.renderers;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.joml.Matrix4f;
-import org.joml.Vector4f;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
+import org.joml.*;
+import org.lwjgl.opengl.*;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
-import io.github.hydos.ginger.engine.elements.objects.Entity;
-import io.github.hydos.ginger.engine.elements.objects.Light;
+import io.github.hydos.ginger.engine.elements.objects.*;
 import io.github.hydos.ginger.engine.io.Window;
 import io.github.hydos.ginger.engine.math.Maths;
 import io.github.hydos.ginger.engine.render.MasterRenderer;
-import io.github.hydos.ginger.engine.render.models.RawModel;
-import io.github.hydos.ginger.engine.render.models.TexturedModel;
+import io.github.hydos.ginger.engine.render.models.*;
 import io.github.hydos.ginger.engine.render.shaders.NormalMappingShader;
 import io.github.hydos.ginger.engine.render.texture.ModelTexture;
 

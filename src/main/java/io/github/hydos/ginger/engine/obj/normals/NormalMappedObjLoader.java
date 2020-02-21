@@ -2,8 +2,7 @@ package io.github.hydos.ginger.engine.obj.normals;
 
 import java.util.List;
 
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.*;
 
 import io.github.hydos.ginger.engine.math.Maths;
 import io.github.hydos.ginger.engine.render.models.RawModel;
@@ -13,75 +12,75 @@ public class NormalMappedObjLoader
 {
 	public static RawModel loadOBJ(String objFileName)
 	{
-//		BufferedReader isr = null;
-//		isr = new BufferedReader(new InputStreamReader(Class.class.getResourceAsStream("/models/" + objFileName)));
-//		BufferedReader reader = new BufferedReader(isr);
-//		String line;
-//		List<VertexNM> vertices = new ArrayList<VertexNM>();
-//		List<Vector2f> textures = new ArrayList<Vector2f>();
-//		List<Vector3f> normals = new ArrayList<Vector3f>();
-//		List<Integer> indices = new ArrayList<Integer>();
-//		try
-//		{
-//			while (true)
-//			{
-//				line = reader.readLine();
-//				if (line.startsWith("v "))
-//				{
-//					String[] currentLine = line.split(" ");
-//					Vector3f vertex = new Vector3f(Float.valueOf(currentLine[1]),
-//						Float.valueOf(currentLine[2]),
-//						Float.valueOf(currentLine[3]));
-//					VertexNM newVertex = new VertexNM(vertices.size(), vertex);
-//					vertices.add(newVertex);
-//				}
-//				else if (line.startsWith("vt "))
-//				{
-//					String[] currentLine = line.split(" ");
-//					Vector2f texture = new Vector2f(Float.valueOf(currentLine[1]),
-//						Float.valueOf(currentLine[2]));
-//					textures.add(texture);
-//				}
-//				else if (line.startsWith("vn "))
-//				{
-//					String[] currentLine = line.split(" ");
-//					Vector3f normal = new Vector3f(Float.valueOf(currentLine[1]),
-//						Float.valueOf(currentLine[2]),
-//						Float.valueOf(currentLine[3]));
-//					normals.add(normal);
-//				}
-//				else if (line.startsWith("f "))
-//				{ break; }
-//			}
-//			while (line != null && line.startsWith("f "))
-//			{
-//				String[] currentLine = line.split(" ");
-//				String[] vertex1 = currentLine[1].split("/");
-//				String[] vertex2 = currentLine[2].split("/");
-//				String[] vertex3 = currentLine[3].split("/");
-//				VertexNM v0 = processVertex(vertex1, vertices, indices);
-//				VertexNM v1 = processVertex(vertex2, vertices, indices);
-//				VertexNM v2 = processVertex(vertex3, vertices, indices);
-//				calculateTangents(v0, v1, v2, textures);//NEW
-//				line = reader.readLine();
-//			}
-//			reader.close();
-//		}
-//		catch (IOException e)
-//		{
-//			System.err.println("Error reading the file");
-//		}
-//		removeUnusedVertices(vertices);
-//		float[] verticesArray = new float[vertices.size() * 3];
-//		float[] texturesArray = new float[vertices.size() * 2];
-//		float[] normalsArray = new float[vertices.size() * 3];
-//		float[] tangentsArray = new float[vertices.size() * 3];
-//		@SuppressWarnings("unused")
-//		//some weird eclipse only error here i think
-//		float furthest = convertDataToArrays(vertices, textures, normals, verticesArray,
-//			texturesArray, normalsArray, tangentsArray);
-//		int[] indicesArray = convertIndicesListToArray(indices);
-//		return Loader.loadToVAO(verticesArray, indicesArray, normalsArray, tangentsArray, texturesArray);
+		//		BufferedReader isr = null;
+		//		isr = new BufferedReader(new InputStreamReader(Class.class.getResourceAsStream("/models/" + objFileName)));
+		//		BufferedReader reader = new BufferedReader(isr);
+		//		String line;
+		//		List<VertexNM> vertices = new ArrayList<VertexNM>();
+		//		List<Vector2f> textures = new ArrayList<Vector2f>();
+		//		List<Vector3f> normals = new ArrayList<Vector3f>();
+		//		List<Integer> indices = new ArrayList<Integer>();
+		//		try
+		//		{
+		//			while (true)
+		//			{
+		//				line = reader.readLine();
+		//				if (line.startsWith("v "))
+		//				{
+		//					String[] currentLine = line.split(" ");
+		//					Vector3f vertex = new Vector3f(Float.valueOf(currentLine[1]),
+		//						Float.valueOf(currentLine[2]),
+		//						Float.valueOf(currentLine[3]));
+		//					VertexNM newVertex = new VertexNM(vertices.size(), vertex);
+		//					vertices.add(newVertex);
+		//				}
+		//				else if (line.startsWith("vt "))
+		//				{
+		//					String[] currentLine = line.split(" ");
+		//					Vector2f texture = new Vector2f(Float.valueOf(currentLine[1]),
+		//						Float.valueOf(currentLine[2]));
+		//					textures.add(texture);
+		//				}
+		//				else if (line.startsWith("vn "))
+		//				{
+		//					String[] currentLine = line.split(" ");
+		//					Vector3f normal = new Vector3f(Float.valueOf(currentLine[1]),
+		//						Float.valueOf(currentLine[2]),
+		//						Float.valueOf(currentLine[3]));
+		//					normals.add(normal);
+		//				}
+		//				else if (line.startsWith("f "))
+		//				{ break; }
+		//			}
+		//			while (line != null && line.startsWith("f "))
+		//			{
+		//				String[] currentLine = line.split(" ");
+		//				String[] vertex1 = currentLine[1].split("/");
+		//				String[] vertex2 = currentLine[2].split("/");
+		//				String[] vertex3 = currentLine[3].split("/");
+		//				VertexNM v0 = processVertex(vertex1, vertices, indices);
+		//				VertexNM v1 = processVertex(vertex2, vertices, indices);
+		//				VertexNM v2 = processVertex(vertex3, vertices, indices);
+		//				calculateTangents(v0, v1, v2, textures);//NEW
+		//				line = reader.readLine();
+		//			}
+		//			reader.close();
+		//		}
+		//		catch (IOException e)
+		//		{
+		//			System.err.println("Error reading the file");
+		//		}
+		//		removeUnusedVertices(vertices);
+		//		float[] verticesArray = new float[vertices.size() * 3];
+		//		float[] texturesArray = new float[vertices.size() * 2];
+		//		float[] normalsArray = new float[vertices.size() * 3];
+		//		float[] tangentsArray = new float[vertices.size() * 3];
+		//		@SuppressWarnings("unused")
+		//		//some weird eclipse only error here i think
+		//		float furthest = convertDataToArrays(vertices, textures, normals, verticesArray,
+		//			texturesArray, normalsArray, tangentsArray);
+		//		int[] indicesArray = convertIndicesListToArray(indices);
+		//		return Loader.loadToVAO(verticesArray, indicesArray, normalsArray, tangentsArray, texturesArray);
 		return null;
 	}
 

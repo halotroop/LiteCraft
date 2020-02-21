@@ -2,8 +2,7 @@ package io.github.hydos.ginger.UI;
 
 import java.util.List;
 
-import io.github.hydos.ginger.UI.enums.UIDefaultClipSide;
-import io.github.hydos.ginger.UI.enums.UIType;
+import io.github.hydos.ginger.UI.enums.*;
 import io.github.hydos.ginger.engine.elements.GuiTexture;
 
 public abstract class UICanvas

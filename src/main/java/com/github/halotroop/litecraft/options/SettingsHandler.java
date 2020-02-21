@@ -1,7 +1,6 @@
 package com.github.halotroop.litecraft.options;
 
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
+import org.apache.commons.cli.*;
 
 public class SettingsHandler
 {

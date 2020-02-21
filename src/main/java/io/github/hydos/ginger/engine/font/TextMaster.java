@@ -1,9 +1,6 @@
 package io.github.hydos.ginger.engine.font;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import io.github.hydos.ginger.engine.render.renderers.FontRenderer;
 import io.github.hydos.ginger.engine.utils.Loader;
