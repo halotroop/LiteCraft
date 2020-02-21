@@ -1,9 +1,9 @@
 package io.github.hydos.ginger.engine.render.shaders;
 
+import org.joml.Matrix4f;
+
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.math.Maths;
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
-
 public class SkyboxShader extends ShaderProgram
 {
 	private int location_projectionMatrix;
@@ -17,10 +17,11 @@ public class SkyboxShader extends ShaderProgram
 
 	public void loadViewMatrix(ThirdPersonCamera camera)
 	{
+		//TODO: make a vector3f
 		Matrix4f matrix = Maths.createViewMatrix(camera);
-		matrix.m30 = 0;
-		matrix.m31 = 0;
-		matrix.m32 = 0;
+		matrix.m30(0);
+		matrix.m31(0);
+		matrix.m32(0);
 		super.loadMatrix(location_viewMatrix, matrix);
 	}
 

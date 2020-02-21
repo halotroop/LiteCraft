@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL12;
 import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL30;
 
-import io.github.hydos.ginger.engine.io.Window;
+import com.github.halotroop.litecraft.LiteCraftMain;
 
 public class Fbo
 {
@@ -63,7 +63,7 @@ public class Fbo
 	public void unbindFrameBuffer()
 	{
 		GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, 0);
-		GL11.glViewport(0, 0, Window.width, Window.height);
+		GL11.glViewport(0, 0, LiteCraftMain.width, LiteCraftMain.height);
 	}
 
 	/** Binds the current FBO to be read from (not used in tutorial 43). */

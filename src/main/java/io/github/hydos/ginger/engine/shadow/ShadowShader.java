@@ -1,6 +1,7 @@
 package io.github.hydos.ginger.engine.shadow;
 
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
+import org.joml.Matrix4f;
+
 import io.github.hydos.ginger.engine.render.shaders.ShaderProgram;
 
 public class ShadowShader extends ShaderProgram

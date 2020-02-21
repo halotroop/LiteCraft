@@ -1,5 +1,6 @@
 package io.github.hydos.ginger.engine.cameras;
 
+import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import io.github.hydos.ginger.engine.io.Window;

@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.FloatBuffer;
 
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
-
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.math.vectors.Vector2f;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
-import io.github.hydos.ginger.engine.math.vectors.Vector4f;
 
 public abstract class ShaderProgram
 {
@@ -85,7 +84,7 @@ public abstract class ShaderProgram
 
 	protected void loadMatrix(int location, Matrix4f matrix)
 	{
-		matrix.store(matrixBuffer);
+		matrix = new Matrix4f(matrixBuffer);
 		matrixBuffer.flip();
 		GL20.glUniformMatrix4fv(location, false, matrixBuffer);
 	}

@@ -2,11 +2,12 @@ package io.github.hydos.ginger.engine.render.shaders;
 
 import java.util.List;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.objects.Light;
 import io.github.hydos.ginger.engine.math.Maths;
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 
 public class TerrainShader extends ShaderProgram
 {

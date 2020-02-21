@@ -1,7 +1,7 @@
 package io.github.hydos.ginger.engine.font;
 
-import io.github.hydos.ginger.engine.math.vectors.Vector2f;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 /** Represents a piece of text in the game. */
 public class GUIText

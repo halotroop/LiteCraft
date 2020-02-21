@@ -1,9 +1,11 @@
 package io.github.hydos.ginger.engine.particle;
 
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.math.vectors.Vector2f;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.Maths;
 import io.github.hydos.ginger.main.settings.Constants;
 
 public class Particle
@@ -64,9 +66,9 @@ public class Particle
 		float time = (float) Window.getTime() / 1000000;
 		velocity.y += Constants.gravity * gravityEffect * time;
 		Vector3f change = new Vector3f(velocity);
-		change.scale(time);
-		Vector3f.add(change, position, position);
-		distance = Vector3f.sub(camera.getPosition(), position, null).lengthSquared();
+		Maths.scale(change, time);
+		position.add(change, position);
+		distance = position.sub(camera.getPosition(), position).lengthSquared();
 		elapsedTime += time;
 		updateTextureCoordInfo();
 		return elapsedTime < lifeLength;

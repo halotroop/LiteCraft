@@ -1,12 +1,15 @@
 package io.github.hydos.ginger.engine.render.tools;
 
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
+
+import com.github.halotroop.litecraft.LiteCraftMain;
+
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.io.Window;
 import io.github.hydos.ginger.engine.math.Maths;
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.math.vectors.Vector2f;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
-import io.github.hydos.ginger.engine.math.vectors.Vector4f;
 import io.github.hydos.ginger.engine.terrain.Terrain;
 
 public class MousePicker
@@ -51,7 +54,7 @@ public class MousePicker
 	private Vector3f calculateMouseRay()
 	{
 		float mouseX = (float) Window.getMouseX();
-		float mouseY = (float) (Window.height - Window.getMouseY());
+		float mouseY = (float) (LiteCraftMain.height - Window.getMouseY());
 		Vector2f normalizedCoords = getNormalisedDeviceCoordinates(mouseX, mouseY);
 		Vector4f clipCoords = new Vector4f(normalizedCoords.x, normalizedCoords.y, -1.0f, 1.0f);
 		Vector4f eyeCoords = toEyeCoords(clipCoords);
@@ -61,34 +64,35 @@ public class MousePicker
 
 	private Vector3f toWorldCoords(Vector4f eyeCoords)
 	{
-		Matrix4f invertedView = Matrix4f.invert(viewMatrix, null);
-		Vector4f rayWorld = Matrix4f.transform(invertedView, eyeCoords, null);
+		Matrix4f invertedView = viewMatrix.invert(viewMatrix);
+		Vector4f rayWorld = invertedView.transform(eyeCoords);
 		Vector3f mouseRay = new Vector3f(rayWorld.x, rayWorld.y, rayWorld.z);
-		mouseRay.normalise();
+		mouseRay.normalize();
 		return mouseRay;
 	}
 
 	private Vector4f toEyeCoords(Vector4f clipCoords)
 	{
-		Matrix4f invertedProjection = Matrix4f.invert(projectionMatrix, null);
-		Vector4f eyeCoords = Matrix4f.transform(invertedProjection, clipCoords, null);
+		Matrix4f invertedProjection = projectionMatrix.invert(projectionMatrix);
+		Vector4f eyeCoords = invertedProjection.transform(clipCoords);
 		return new Vector4f(eyeCoords.x, eyeCoords.y, -1f, 0f);
 	}
 
 	private Vector2f getNormalisedDeviceCoordinates(float mouseX, float mouseY)
 	{
-		float x = (2.0f * mouseX) / Window.width - 1f;
-		float y = (2.0f * mouseY) / Window.height - 1f;
+		float x = (2.0f * mouseX) / LiteCraftMain.width - 1f;
+		float y = (2.0f * mouseY) / LiteCraftMain.height - 1f;
 		return new Vector2f(x, y);
 	}
 	//**********************************************************
 
 	private Vector3f getPointOnRay(Vector3f ray, float distance)
 	{
+		Vector3f output = new Vector3f();
 		Vector3f camPos = camera.getPosition();
 		Vector3f start = new Vector3f(camPos.x, camPos.y, camPos.z);
 		Vector3f scaledRay = new Vector3f(ray.x * distance, ray.y * distance, ray.z * distance);
-		return Vector3f.add(start, scaledRay, null);
+		return output.add(start, scaledRay);
 	}
 
 	private Vector3f binarySearch(int count, float start, float finish, Vector3f ray)
@@ -97,7 +101,7 @@ public class MousePicker
 		if (count >= RECURSION_COUNT)
 		{
 			Vector3f endPoint = getPointOnRay(ray, half);
-			Terrain terrain = getTerrain(endPoint.getX(), endPoint.getZ());
+			Terrain terrain = getTerrain(endPoint.x, endPoint.z);
 			if (terrain != null)
 			{
 				return endPoint;
@@ -133,10 +137,10 @@ public class MousePicker
 
 	private boolean isUnderGround(Vector3f testPoint)
 	{
-		Terrain terrain = getTerrain(testPoint.getX(), testPoint.getZ());
+		Terrain terrain = getTerrain(testPoint.x(), testPoint.z());
 		float height = 0;
 		if (terrain != null)
-		{ height = terrain.getHeightOfTerrain(testPoint.getX(), testPoint.getZ()); }
+		{ height = terrain.getHeightOfTerrain(testPoint.x(), testPoint.z()); }
 		if (testPoint.y < height)
 		{
 			return true;

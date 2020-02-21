@@ -3,6 +3,9 @@ package com.github.halotroop.litecraft.render;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector3f;
+import org.joml.Vector4f;
+
 import com.github.halotroop.litecraft.LiteCraftMain;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
@@ -12,8 +15,6 @@ import io.github.hydos.ginger.engine.elements.objects.Light;
 import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
 import io.github.hydos.ginger.engine.font.TextMaster;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
-import io.github.hydos.ginger.engine.math.vectors.Vector4f;
 import io.github.hydos.ginger.engine.particle.ParticleMaster;
 import io.github.hydos.ginger.engine.postprocessing.PostProcessing;
 import io.github.hydos.ginger.engine.render.MasterRenderer;

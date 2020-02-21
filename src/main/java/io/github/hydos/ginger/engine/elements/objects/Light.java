@@ -1,6 +1,6 @@
 package io.github.hydos.ginger.engine.elements.objects;
 
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import org.joml.Vector3f;
 
 public class Light
 {

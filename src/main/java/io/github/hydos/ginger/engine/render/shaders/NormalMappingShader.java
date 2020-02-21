@@ -2,11 +2,13 @@ package io.github.hydos.ginger.engine.render.shaders;
 
 import java.util.List;
 
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
+
 import io.github.hydos.ginger.engine.elements.objects.Light;
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.math.vectors.Vector2f;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
-import io.github.hydos.ginger.engine.math.vectors.Vector4f;
+import io.github.hydos.ginger.engine.math.Maths;
 
 public class NormalMappingShader extends ShaderProgram
 {
@@ -121,8 +123,8 @@ public class NormalMappingShader extends ShaderProgram
 	{
 		Vector3f position = light.getPosition();
 		Vector4f eyeSpacePos = new Vector4f(position.x, position.y, position.z, 1f);
-		Matrix4f.transform(viewMatrix, eyeSpacePos, eyeSpacePos);
-		return new Vector3f(eyeSpacePos);
+//		eyeSpacePos no transform method :p
+		return Maths.Vec4ToVec3(eyeSpacePos);
 	}
 
 	public void loadSkyColour(Vector3f colour)

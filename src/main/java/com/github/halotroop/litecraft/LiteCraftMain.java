@@ -10,6 +10,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.joml.Vector3f;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -24,7 +25,6 @@ import com.github.halotroop.litecraft.render.RenderWrapper;
 
 import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 import io.github.hydos.ginger.engine.obj.ModelLoader;
 import io.github.hydos.ginger.engine.render.models.TexturedModel;
 
@@ -35,6 +35,7 @@ public class LiteCraftMain implements Runnable
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
 	public static String splashText = "";
+	public static boolean fullscreen = false;
 	private int fps, ups, tps;
 	private long frameTimer;
 	protected Timer timer;

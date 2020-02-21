@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.joml.Matrix4f;
+
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
-import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
 import io.github.hydos.ginger.engine.render.renderers.ParticleRenderer;
 
 public class ParticleMaster

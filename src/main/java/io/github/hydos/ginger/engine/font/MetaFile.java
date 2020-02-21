@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.github.hydos.ginger.engine.io.Window;
+import com.github.halotroop.litecraft.LiteCraftMain;
 
 /** Provides functionality for getting the values from a font file. */
 public class MetaFile
@@ -35,7 +35,7 @@ public class MetaFile
 	 *             - the font file. */
 	protected MetaFile(String file)
 	{
-		this.aspectRatio = (double) Window.width / (double) Window.height;
+		this.aspectRatio = (double) LiteCraftMain.width / (double) LiteCraftMain.height;
 		openFile(file);
 		loadPaddingData();
 		loadLineSizes();
