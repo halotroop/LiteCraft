@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
-import io.github.hydos.ginger.engine.mathEngine.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.renderEngine.renderers.ParticleRenderer;
+import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
+import io.github.hydos.ginger.engine.render.renderers.ParticleRenderer;
 
 public class ParticleMaster
 {

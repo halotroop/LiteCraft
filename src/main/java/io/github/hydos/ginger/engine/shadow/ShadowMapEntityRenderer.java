@@ -9,11 +9,11 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import io.github.hydos.ginger.engine.elements.objects.Entity;
-import io.github.hydos.ginger.engine.mathEngine.Maths;
-import io.github.hydos.ginger.engine.mathEngine.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.renderEngine.MasterRenderer;
-import io.github.hydos.ginger.engine.renderEngine.models.RawModel;
-import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
+import io.github.hydos.ginger.engine.math.Maths;
+import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
+import io.github.hydos.ginger.engine.render.MasterRenderer;
+import io.github.hydos.ginger.engine.render.models.RawModel;
+import io.github.hydos.ginger.engine.render.models.TexturedModel;
 
 public class ShadowMapEntityRenderer
 {

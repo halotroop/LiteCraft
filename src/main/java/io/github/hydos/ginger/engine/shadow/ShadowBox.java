@@ -2,10 +2,10 @@ package io.github.hydos.ginger.engine.shadow;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector4f;
-import io.github.hydos.ginger.engine.renderEngine.MasterRenderer;
+import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.vectors.Vector4f;
+import io.github.hydos.ginger.engine.render.MasterRenderer;
 
 /** Represents the 3D cuboidal area of the world in which objects will cast
  * shadows (basically represents the orthographic projection area for the shadow

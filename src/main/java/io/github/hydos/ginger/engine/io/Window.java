@@ -11,9 +11,9 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLCapabilities;
 
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
-import io.github.hydos.ginger.engine.renderEngine.texture.Image;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.render.texture.Image;
 
 public class Window
 {

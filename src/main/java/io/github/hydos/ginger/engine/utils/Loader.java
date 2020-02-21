@@ -16,9 +16,9 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL33;
 
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.renderEngine.models.RawModel;
-import io.github.hydos.ginger.engine.renderEngine.texture.Image;
-import io.github.hydos.ginger.engine.renderEngine.texture.ModelTexture;
+import io.github.hydos.ginger.engine.render.models.RawModel;
+import io.github.hydos.ginger.engine.render.texture.Image;
+import io.github.hydos.ginger.engine.render.texture.ModelTexture;
 import io.github.hydos.ginger.engine.terrain.TerrainTexture;
 
 public class Loader

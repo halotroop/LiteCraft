@@ -5,10 +5,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import io.github.hydos.ginger.engine.mathEngine.Maths;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
-import io.github.hydos.ginger.engine.renderEngine.models.RawModel;
+import io.github.hydos.ginger.engine.math.Maths;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.render.models.RawModel;
 import io.github.hydos.ginger.engine.utils.Loader;
 import io.github.hydos.ginger.main.settings.Constants;
 

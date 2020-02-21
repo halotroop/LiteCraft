@@ -3,8 +3,8 @@ package io.github.hydos.ginger.engine.elements.objects;
 import org.lwjgl.glfw.GLFW;
 
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
-import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.render.models.TexturedModel;
 import io.github.hydos.ginger.engine.terrain.Terrain;
 import io.github.hydos.ginger.main.settings.Constants;
 

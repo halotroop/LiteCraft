@@ -3,9 +3,9 @@ package io.github.hydos.ginger.engine.particle;
 import java.util.Random;
 
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector4f;
+import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.vectors.Vector4f;
 
 public class ParticleSystem
 {

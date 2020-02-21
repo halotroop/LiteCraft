@@ -6,7 +6,7 @@ import org.lwjgl.glfw.GLFW;
 
 import io.github.hydos.ginger.engine.elements.GuiTexture;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
 import io.github.hydos.ginger.engine.utils.Loader;
 
 public class TextureButton

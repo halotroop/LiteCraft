@@ -1,6 +1,6 @@
 package io.github.hydos.ginger.engine.elements;
 
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
 
 public class GuiTexture
 {

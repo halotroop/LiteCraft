@@ -1,7 +1,7 @@
 package io.github.hydos.ginger.engine.obj;
 
-import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
-import io.github.hydos.ginger.engine.renderEngine.texture.ModelTexture;
+import io.github.hydos.ginger.engine.render.models.TexturedModel;
+import io.github.hydos.ginger.engine.render.texture.ModelTexture;
 import io.github.hydos.ginger.engine.utils.Loader;
 
 public class ModelLoader

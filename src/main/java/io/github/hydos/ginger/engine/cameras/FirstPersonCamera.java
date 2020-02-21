@@ -3,7 +3,7 @@ package io.github.hydos.ginger.engine.cameras;
 import org.lwjgl.glfw.GLFW;
 
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 
 public class FirstPersonCamera
 {

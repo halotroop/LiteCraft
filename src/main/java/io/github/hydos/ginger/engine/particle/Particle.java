@@ -2,8 +2,8 @@ package io.github.hydos.ginger.engine.particle;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 import io.github.hydos.ginger.main.settings.Constants;
 
 public class Particle

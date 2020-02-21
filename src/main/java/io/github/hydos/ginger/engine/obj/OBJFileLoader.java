@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 
 public class OBJFileLoader
 {

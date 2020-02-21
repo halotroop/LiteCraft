@@ -8,10 +8,10 @@ import org.lwjgl.opengl.GL11;
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.objects.Entity;
 import io.github.hydos.ginger.engine.elements.objects.Light;
-import io.github.hydos.ginger.engine.mathEngine.matrixes.Matrix4f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector2f;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
-import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
+import io.github.hydos.ginger.engine.math.matrixes.Matrix4f;
+import io.github.hydos.ginger.engine.math.vectors.Vector2f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
+import io.github.hydos.ginger.engine.render.models.TexturedModel;
 
 /** This class is in charge of using all of the classes in the shadows package to
  * carry out the shadow render pass, i.e. rendering the scene to the shadow map
