@@ -5,10 +5,13 @@ import java.util.List;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.GuiTexture;
-import io.github.hydos.ginger.engine.elements.objects.*;
+import io.github.hydos.ginger.engine.elements.objects.Entity;
+import io.github.hydos.ginger.engine.elements.objects.Light;
+import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
 import io.github.hydos.ginger.engine.font.TextMaster;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.vectors.*;
+import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.mathEngine.vectors.Vector4f;
 import io.github.hydos.ginger.engine.particle.ParticleMaster;
 import io.github.hydos.ginger.engine.postProcessing.PostProcessing;
 import io.github.hydos.ginger.engine.renderEngine.MasterRenderer;

@@ -139,7 +139,7 @@ public class LiteCraftMain implements Runnable
 
 	public void render()
 	{
-//		if (debug) window.setWindowTitle("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
+		if (debug) System.out.println("LiteCraft | FPS: " + fps + " | TPS: " + tps + " | UPS: " + ups);
 		RenderWrapper.render();
 		fps++; // After a successful frame render, increase the frame counter.
 	}
