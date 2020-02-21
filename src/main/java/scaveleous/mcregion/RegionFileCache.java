@@ -1,6 +1,5 @@
 package scaveleous.mcregion;
 
-
 /*
 ** Author: Scaveleous (Minecraft Forum)
 ** (Public domain)

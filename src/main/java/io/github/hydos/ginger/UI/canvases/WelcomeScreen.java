@@ -5,29 +5,20 @@ import java.util.List;
 import io.github.hydos.ginger.UI.UICanvas;
 import io.github.hydos.ginger.engine.elements.GuiTexture;
 
-public class WelcomeScreen extends UICanvas{
-
-	public WelcomeScreen() {
-	
-	}
-
-	@Override
-	public void update() {
-		
-	}
+public class WelcomeScreen extends UICanvas
+{
+	public WelcomeScreen()
+	{}
 
 	@Override
-	public void hide(List<GuiTexture> textures) {
-		
-	}
+	public void update()
+	{}
 
 	@Override
-	public void show(List<GuiTexture> textures) {
-		
-	}
+	public void hide(List<GuiTexture> textures)
+	{}
 
-	
-	
-	
-
+	@Override
+	public void show(List<GuiTexture> textures)
+	{}
 }

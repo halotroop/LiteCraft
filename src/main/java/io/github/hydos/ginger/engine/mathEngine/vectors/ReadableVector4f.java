@@ -31,14 +31,9 @@
  */
 package io.github.hydos.ginger.engine.mathEngine.vectors;
 
-/**
- * @author foo
- */
-public interface ReadableVector4f extends ReadableVector3f {
-
-    /**
-     * @return w
-     */
-    float getW();
-
+/** @author foo */
+public interface ReadableVector4f extends ReadableVector3f
+{
+	/** @return w */
+	float getW();
 }

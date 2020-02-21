@@ -1,7 +1,6 @@
 package io.github.hydos.ginger.UI.enums;
 
-public enum UIType {
-	
+public enum UIType
+{
 	tab, wholeScreen
-	
 }

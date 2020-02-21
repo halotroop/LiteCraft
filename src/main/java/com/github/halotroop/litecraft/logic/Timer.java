@@ -55,7 +55,7 @@ public class Timer
 		}
 		return false;
 	}
-	
+
 	public interface TickListener
 	{
 		void onTick(float deltaTime);

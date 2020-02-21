@@ -1,7 +1,7 @@
 package io.github.hydos.ginger.engine.obj;
 
-public class ModelData {
-
+public class ModelData
+{
 	private float[] vertices;
 	private float[] textureCoords;
 	private float[] normals;
@@ -9,7 +9,8 @@ public class ModelData {
 	private float furthestPoint;
 
 	public ModelData(float[] vertices, float[] textureCoords, float[] normals, int[] indices,
-			float furthestPoint) {
+		float furthestPoint)
+	{
 		this.vertices = vertices;
 		this.textureCoords = textureCoords;
 		this.normals = normals;
@@ -17,24 +18,18 @@ public class ModelData {
 		this.furthestPoint = furthestPoint;
 	}
 
-	public float[] getVertices() {
-		return vertices;
-	}
+	public float[] getVertices()
+	{ return vertices; }
 
-	public float[] getTextureCoords() {
-		return textureCoords;
-	}
+	public float[] getTextureCoords()
+	{ return textureCoords; }
 
-	public float[] getNormals() {
-		return normals;
-	}
+	public float[] getNormals()
+	{ return normals; }
 
-	public int[] getIndices() {
-		return indices;
-	}
+	public int[] getIndices()
+	{ return indices; }
 
-	public float getFurthestPoint() {
-		return furthestPoint;
-	}
-
+	public float getFurthestPoint()
+	{ return furthestPoint; }
 }

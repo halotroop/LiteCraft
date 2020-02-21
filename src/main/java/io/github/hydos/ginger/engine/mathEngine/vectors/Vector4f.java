@@ -34,334 +34,298 @@ package io.github.hydos.ginger.engine.mathEngine.vectors;
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
-/**
- *
- * Holds a 4-tuple vector.
+/** Holds a 4-tuple vector.
  * 
- * @author cix_foo <cix_foo@users.sourceforge.net>
+ * @author  cix_foo <cix_foo@users.sourceforge.net>
  * @version $Revision$
- * $Id$
- */
+ *          $Id$ */
+public class Vector4f extends Vector implements Serializable, ReadableVector4f, WritableVector4f
+{
+	private static final long serialVersionUID = 1L;
+	public float x, y, z, w;
 
-public class Vector4f extends Vector implements Serializable, ReadableVector4f, WritableVector4f {
+	/** Constructor for Vector4f. */
+	public Vector4f()
+	{ super(); }
 
-    private static final long serialVersionUID = 1L;
+	/** Constructor */
+	public Vector4f(ReadableVector4f src)
+	{ set(src); }
 
-    public float x, y, z, w;
+	/** Constructor */
+	public Vector4f(float x, float y, float z, float w)
+	{ set(x, y, z, w); }
 
-    /**
-     * Constructor for Vector4f.
-     */
-    public Vector4f() {
-        super();
-    }
+	/* (non-Javadoc)
+	 * @see org.lwjgl.util.vector.WritableVector2f#set(float, float)
+	 */
+	@Override
+	public void set(float x, float y)
+	{
+		this.x = x;
+		this.y = y;
+	}
 
-    /**
-     * Constructor
-     */
-    public Vector4f(ReadableVector4f src) {
-        set(src);
-    }
+	/* (non-Javadoc)
+	 * @see org.lwjgl.util.vector.WritableVector3f#set(float, float, float)
+	 */
+	@Override
+	public void set(float x, float y, float z)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
-    /**
-     * Constructor
-     */
-    public Vector4f(float x, float y, float z, float w) {
-        set(x, y, z, w);
-    }
+	/* (non-Javadoc)
+	 * @see org.lwjgl.util.vector.WritableVector4f#set(float, float, float, float)
+	 */
+	@Override
+	public void set(float x, float y, float z, float w)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.w = w;
+	}
 
-    /* (non-Javadoc)
-     * @see org.lwjgl.util.vector.WritableVector2f#set(float, float)
-     */
-    @Override
-	public void set(float x, float y) {
-        this.x = x;
-        this.y = y;
-    }
+	/** Load from another Vector4f
+	 * 
+	 * @param  src The source vector
+	 * @return     this */
+	public Vector4f set(ReadableVector4f src)
+	{
+		x = src.getX();
+		y = src.getY();
+		z = src.getZ();
+		w = src.getW();
+		return this;
+	}
 
-    /* (non-Javadoc)
-     * @see org.lwjgl.util.vector.WritableVector3f#set(float, float, float)
-     */
-    @Override
-	public void set(float x, float y, float z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+	/** @return the length squared of the vector */
+	@Override
+	public float lengthSquared()
+	{ return x * x + y * y + z * z + w * w; }
 
-    /* (non-Javadoc)
-     * @see org.lwjgl.util.vector.WritableVector4f#set(float, float, float, float)
-     */
-    @Override
-	public void set(float x, float y, float z, float w) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
+	/** Translate a vector
+	 * 
+	 * @param  x The translation in x
+	 * @param  y the translation in y
+	 * @return   this */
+	public Vector4f translate(float x, float y, float z, float w)
+	{
+		this.x += x;
+		this.y += y;
+		this.z += z;
+		this.w += w;
+		return this;
+	}
 
-    /**
-     * Load from another Vector4f
-     * @param src The source vector
-     * @return this
-     */
-    public Vector4f set(ReadableVector4f src) {
-        x = src.getX();
-        y = src.getY();
-        z = src.getZ();
-        w = src.getW();
-        return this;
-    }
+	/** Add a vector to another vector and place the result in a destination
+	 * vector.
+	 * 
+	 * @param  left  The LHS vector
+	 * @param  right The RHS vector
+	 * @param  dest  The destination vector, or null if a new vector is to be created
+	 * @return       the sum of left and right in dest */
+	public static Vector4f add(Vector4f left, Vector4f right, Vector4f dest)
+	{
+		if (dest == null)
+			return new Vector4f(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
+		else
+		{
+			dest.set(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
+			return dest;
+		}
+	}
 
-    /**
-     * @return the length squared of the vector
-     */
-    @Override
-	public float lengthSquared() {
-        return x * x + y * y + z * z + w * w;
-    }
+	/** Subtract a vector from another vector and place the result in a destination
+	 * vector.
+	 * 
+	 * @param  left  The LHS vector
+	 * @param  right The RHS vector
+	 * @param  dest  The destination vector, or null if a new vector is to be created
+	 * @return       left minus right in dest */
+	public static Vector4f sub(Vector4f left, Vector4f right, Vector4f dest)
+	{
+		if (dest == null)
+			return new Vector4f(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
+		else
+		{
+			dest.set(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
+			return dest;
+		}
+	}
 
-    /**
-     * Translate a vector
-     * @param x The translation in x
-     * @param y the translation in y
-     * @return this
-     */
-    public Vector4f translate(float x, float y, float z, float w) {
-        this.x += x;
-        this.y += y;
-        this.z += z;
-        this.w += w;
-        return this;
-    }
+	/** Negate a vector
+	 * 
+	 * @return this */
+	@Override
+	public Vector negate()
+	{
+		x = -x;
+		y = -y;
+		z = -z;
+		w = -w;
+		return this;
+	}
 
-    /**
-     * Add a vector to another vector and place the result in a destination
-     * vector.
-     * @param left The LHS vector
-     * @param right The RHS vector
-     * @param dest The destination vector, or null if a new vector is to be created
-     * @return the sum of left and right in dest
-     */
-    public static Vector4f add(Vector4f left, Vector4f right, Vector4f dest) {
-        if (dest == null)
-            return new Vector4f(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
-        else {
-            dest.set(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
-            return dest;
-        }
-    }
+	/** Negate a vector and place the result in a destination vector.
+	 * 
+	 * @param  dest The destination vector or null if a new vector is to be created
+	 * @return      the negated vector */
+	public Vector4f negate(Vector4f dest)
+	{
+		if (dest == null)
+			dest = new Vector4f();
+		dest.x = -x;
+		dest.y = -y;
+		dest.z = -z;
+		dest.w = -w;
+		return dest;
+	}
 
-    /**
-     * Subtract a vector from another vector and place the result in a destination
-     * vector.
-     * @param left The LHS vector
-     * @param right The RHS vector
-     * @param dest The destination vector, or null if a new vector is to be created
-     * @return left minus right in dest
-     */
-    public static Vector4f sub(Vector4f left, Vector4f right, Vector4f dest) {
-        if (dest == null)
-            return new Vector4f(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
-        else {
-            dest.set(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
-            return dest;
-        }
-    }
+	/** Normalise this vector and place the result in another vector.
+	 * 
+	 * @param  dest The destination vector, or null if a new vector is to be created
+	 * @return      the normalised vector */
+	public Vector4f normalise(Vector4f dest)
+	{
+		float l = length();
+		if (dest == null)
+			dest = new Vector4f(x / l, y / l, z / l, w / l);
+		else
+			dest.set(x / l, y / l, z / l, w / l);
+		return dest;
+	}
 
+	/** The dot product of two vectors is calculated as
+	 * v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w
+	 * 
+	 * @param  left  The LHS vector
+	 * @param  right The RHS vector
+	 * @return       left dot right */
+	public static float dot(Vector4f left, Vector4f right)
+	{ return left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w; }
 
-    /**
-     * Negate a vector
-     * @return this
-     */
-    @Override
-	public Vector negate() {
-        x = -x;
-        y = -y;
-        z = -z;
-        w = -w;
-        return this;
-    }
+	/** Calculate the angle between two vectors, in radians
+	 * 
+	 * @param  a A vector
+	 * @param  b The other vector
+	 * @return   the angle between the two vectors, in radians */
+	public static float angle(Vector4f a, Vector4f b)
+	{
+		float dls = dot(a, b) / (a.length() * b.length());
+		if (dls < -1f)
+			dls = -1f;
+		else if (dls > 1.0f)
+			dls = 1.0f;
+		return (float) Math.acos(dls);
+	}
 
-    /**
-     * Negate a vector and place the result in a destination vector.
-     * @param dest The destination vector or null if a new vector is to be created
-     * @return the negated vector
-     */
-    public Vector4f negate(Vector4f dest) {
-        if (dest == null)
-            dest = new Vector4f();
-        dest.x = -x;
-        dest.y = -y;
-        dest.z = -z;
-        dest.w = -w;
-        return dest;
-    }
+	/* (non-Javadoc)
+	 * @see org.lwjgl.vector.Vector#load(FloatBuffer)
+	 */
+	@Override
+	public Vector load(FloatBuffer buf)
+	{
+		x = buf.get();
+		y = buf.get();
+		z = buf.get();
+		w = buf.get();
+		return this;
+	}
 
+	/* (non-Javadoc)
+	 * @see org.lwjgl.vector.Vector#scale(float)
+	 */
+	@Override
+	public Vector scale(float scale)
+	{
+		x *= scale;
+		y *= scale;
+		z *= scale;
+		w *= scale;
+		return this;
+	}
 
-    /**
-     * Normalise this vector and place the result in another vector.
-     * @param dest The destination vector, or null if a new vector is to be created
-     * @return the normalised vector
-     */
-    public Vector4f normalise(Vector4f dest) {
-        float l = length();
+	/* (non-Javadoc)
+	 * @see org.lwjgl.vector.Vector#store(FloatBuffer)
+	 */
+	@Override
+	public Vector store(FloatBuffer buf)
+	{
+		buf.put(x);
+		buf.put(y);
+		buf.put(z);
+		buf.put(w);
+		return this;
+	}
 
-        if (dest == null)
-            dest = new Vector4f(x / l, y / l, z / l, w / l);
-        else
-            dest.set(x / l, y / l, z / l, w / l);
+	@Override
+	public String toString()
+	{ return "Vector4f: " + x + " " + y + " " + z + " " + w; }
 
-        return dest;
-    }
+	/** @return x */
+	@Override
+	public final float getX()
+	{ return x; }
 
-    /**
-     * The dot product of two vectors is calculated as
-     * v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w
-     * @param left The LHS vector
-     * @param right The RHS vector
-     * @return left dot right
-     */
-    public static float dot(Vector4f left, Vector4f right) {
-        return left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w;
-    }
+	/** @return y */
+	@Override
+	public final float getY()
+	{ return y; }
 
-    /**
-     * Calculate the angle between two vectors, in radians
-     * @param a A vector
-     * @param b The other vector
-     * @return the angle between the two vectors, in radians
-     */
-    public static float angle(Vector4f a, Vector4f b) {
-        float dls = dot(a, b) / (a.length() * b.length());
-        if (dls < -1f)
-            dls = -1f;
-        else if (dls > 1.0f)
-            dls = 1.0f;
-        return (float)Math.acos(dls);
-    }
+	/** Set X
+	 * 
+	 * @param x */
+	@Override
+	public final void setX(float x)
+	{ this.x = x; }
 
-    /* (non-Javadoc)
-     * @see org.lwjgl.vector.Vector#load(FloatBuffer)
-     */
-    @Override
-	public Vector load(FloatBuffer buf) {
-        x = buf.get();
-        y = buf.get();
-        z = buf.get();
-        w = buf.get();
-        return this;
-    }
+	/** Set Y
+	 * 
+	 * @param y */
+	@Override
+	public final void setY(float y)
+	{ this.y = y; }
 
-    /* (non-Javadoc)
-     * @see org.lwjgl.vector.Vector#scale(float)
-     */
-    @Override
-	public Vector scale(float scale) {
-        x *= scale;
-        y *= scale;
-        z *= scale;
-        w *= scale;
-        return this;
-    }
+	/** Set Z
+	 * 
+	 * @param z */
+	@Override
+	public void setZ(float z)
+	{ this.z = z; }
 
-    /* (non-Javadoc)
-     * @see org.lwjgl.vector.Vector#store(FloatBuffer)
-     */
-    @Override
-	public Vector store(FloatBuffer buf) {
+	/* (Overrides)
+	 * @see org.lwjgl.vector.ReadableVector3f#getZ()
+	 */
+	@Override
+	public float getZ()
+	{ return z; }
 
-        buf.put(x);
-        buf.put(y);
-        buf.put(z);
-        buf.put(w);
+	/** Set W
+	 * 
+	 * @param w */
+	@Override
+	public void setW(float w)
+	{ this.w = w; }
 
-        return this;
-    }
+	/* (Overrides)
+	 * @see org.lwjgl.vector.ReadableVector3f#getZ()
+	 */
+	@Override
+	public float getW()
+	{ return w; }
 
-    @Override
-	public String toString() {
-        return "Vector4f: " + x + " " + y + " " + z + " " + w;
-    }
-
-    /**
-     * @return x
-     */
-    @Override
-	public final float getX() {
-        return x;
-    }
-
-    /**
-     * @return y
-     */
-    @Override
-	public final float getY() {
-        return y;
-    }
-
-    /**
-     * Set X
-     * @param x
-     */
-    @Override
-	public final void setX(float x) {
-        this.x = x;
-    }
-
-    /**
-     * Set Y
-     * @param y
-     */
-    @Override
-	public final void setY(float y) {
-        this.y = y;
-    }
-
-    /**
-     * Set Z
-     * @param z
-     */
-    @Override
-	public void setZ(float z) {
-        this.z = z;
-    }
-
-
-    /* (Overrides)
-     * @see org.lwjgl.vector.ReadableVector3f#getZ()
-     */
-    @Override
-	public float getZ() {
-        return z;
-    }
-
-    /**
-     * Set W
-     * @param w
-     */
-    @Override
-	public void setW(float w) {
-        this.w = w;
-    }
-
-    /* (Overrides)
-     * @see org.lwjgl.vector.ReadableVector3f#getZ()
-     */
-    @Override
-	public float getW() {
-        return w;
-    }
-
-    @Override
-	public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
-        Vector4f other = (Vector4f)obj;
-        
-        if (x == other.x && y == other.y && z == other.z && w == other.w) return true;
-        
-        return false;
-    }
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		Vector4f other = (Vector4f) obj;
+		if (x == other.x && y == other.y && z == other.z && w == other.w) return true;
+		return false;
+	}
 }

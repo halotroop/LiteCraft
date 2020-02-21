@@ -1,7 +1,7 @@
 package io.github.hydos.ginger.engine.obj.normals;
 
-public class ModelDataNM {
-
+public class ModelDataNM
+{
 	private float[] vertices;
 	private float[] textureCoords;
 	private float[] normals;
@@ -10,7 +10,8 @@ public class ModelDataNM {
 	private float furthestPoint;
 
 	public ModelDataNM(float[] vertices, float[] textureCoords, float[] normals, float[] tangents, int[] indices,
-			float furthestPoint) {
+		float furthestPoint)
+	{
 		this.vertices = vertices;
 		this.textureCoords = textureCoords;
 		this.normals = normals;
@@ -19,28 +20,21 @@ public class ModelDataNM {
 		this.tangents = tangents;
 	}
 
-	public float[] getVertices() {
-		return vertices;
-	}
+	public float[] getVertices()
+	{ return vertices; }
 
-	public float[] getTextureCoords() {
-		return textureCoords;
-	}
-	
-	public float[] getTangents(){
-		return tangents;
-	}
+	public float[] getTextureCoords()
+	{ return textureCoords; }
 
-	public float[] getNormals() {
-		return normals;
-	}
+	public float[] getTangents()
+	{ return tangents; }
 
-	public int[] getIndices() {
-		return indices;
-	}
+	public float[] getNormals()
+	{ return normals; }
 
-	public float getFurthestPoint() {
-		return furthestPoint;
-	}
+	public int[] getIndices()
+	{ return indices; }
 
+	public float getFurthestPoint()
+	{ return furthestPoint; }
 }

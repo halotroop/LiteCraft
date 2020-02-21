@@ -35,7 +35,6 @@ public class LiteCraftMain implements Runnable
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
 	public String splashText = "";
-	@SuppressWarnings("unused")
 	private int fps, ups, tps;
 	private long frameTimer;
 	protected Timer timer;

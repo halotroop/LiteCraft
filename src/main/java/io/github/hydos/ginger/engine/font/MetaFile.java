@@ -8,44 +8,33 @@ import java.util.Map;
 
 import io.github.hydos.ginger.engine.io.Window;
 
-/**
- * Provides functionality for getting the values from a font file.
- * 
- *
- */
-public class MetaFile {
-
+/** Provides functionality for getting the values from a font file. */
+public class MetaFile
+{
 	private static final int PAD_TOP = 0;
 	private static final int PAD_LEFT = 1;
 	private static final int PAD_BOTTOM = 2;
 	private static final int PAD_RIGHT = 3;
-
 	private static final int DESIRED_PADDING = 8;
-
 	private static final String SPLITTER = " ";
 	private static final String NUMBER_SEPARATOR = ",";
-
 	private double aspectRatio;
-
 	private double verticalPerPixelSize;
 	private double horizontalPerPixelSize;
 	private double spaceWidth;
 	private int[] padding;
 	private int paddingWidth;
 	private int paddingHeight;
-
 	private Map<Integer, Character> metaData = new HashMap<Integer, Character>();
-
 	private BufferedReader reader;
 	private Map<String, String> values = new HashMap<String, String>();
 
-	/**
-	 * Opens a font file in preparation for reading.
+	/** Opens a font file in preparation for reading.
 	 * 
 	 * @param file
-	 *            - the font file.
-	 */
-	protected MetaFile(String file) {
+	 *             - the font file. */
+	protected MetaFile(String file)
+	{
 		this.aspectRatio = (double) Window.width / (double) Window.height;
 		openFile(file);
 		loadPaddingData();
@@ -55,145 +44,140 @@ public class MetaFile {
 		close();
 	}
 
-	protected double getSpaceWidth() {
-		return spaceWidth;
-	}
+	protected double getSpaceWidth()
+	{ return spaceWidth; }
 
-	protected Character getCharacter(int ascii) {
-		return metaData.get(ascii);
-	}
+	protected Character getCharacter(int ascii)
+	{ return metaData.get(ascii); }
 
-	/**
-	 * Read in the next line and store the variable values.
+	/** Read in the next line and store the variable values.
 	 * 
-	 * @return {@code true} if the end of the file hasn't been reached.
-	 */
-	private boolean processNextLine() {
+	 * @return {@code true} if the end of the file hasn't been reached. */
+	private boolean processNextLine()
+	{
 		values.clear();
 		String line = null;
-		try {
+		try
+		{
 			line = reader.readLine();
-		} catch (IOException e1) {
 		}
-		if (line == null) {
-			return false;
+		catch (IOException e1)
+		{
 		}
-		for (String part : line.split(SPLITTER)) {
+		if (line == null)
+		{ return false; }
+		for (String part : line.split(SPLITTER))
+		{
 			String[] valuePairs = part.split("=");
-			if (valuePairs.length == 2) {
-				values.put(valuePairs[0], valuePairs[1]);
-			}
+			if (valuePairs.length == 2)
+			{ values.put(valuePairs[0], valuePairs[1]); }
 		}
 		return true;
 	}
 
-	/**
-	 * Gets the {@code int} value of the variable with a certain name on the
+	/** Gets the {@code int} value of the variable with a certain name on the
 	 * current line.
 	 * 
-	 * @param variable
-	 *            - the name of the variable.
-	 * @return The value of the variable.
-	 */
-	private int getValueOfVariable(String variable) {
-		return Integer.parseInt(values.get(variable));
-	}
+	 * @param  variable
+	 *                  - the name of the variable.
+	 * @return          The value of the variable. */
+	private int getValueOfVariable(String variable)
+	{ return Integer.parseInt(values.get(variable)); }
 
-	/**
-	 * Gets the array of ints associated with a variable on the current line.
+	/** Gets the array of ints associated with a variable on the current line.
 	 * 
-	 * @param variable
-	 *            - the name of the variable.
-	 * @return The int array of values associated with the variable.
-	 */
-	private int[] getValuesOfVariable(String variable) {
+	 * @param  variable
+	 *                  - the name of the variable.
+	 * @return          The int array of values associated with the variable. */
+	private int[] getValuesOfVariable(String variable)
+	{
 		String[] numbers = values.get(variable).split(NUMBER_SEPARATOR);
 		int[] actualValues = new int[numbers.length];
-		for (int i = 0; i < actualValues.length; i++) {
-			actualValues[i] = Integer.parseInt(numbers[i]);
-		}
+		for (int i = 0; i < actualValues.length; i++)
+		{ actualValues[i] = Integer.parseInt(numbers[i]); }
 		return actualValues;
 	}
 
-	/**
-	 * Closes the font file after finishing reading.
-	 */
-	private void close() {
-		try {
+	/** Closes the font file after finishing reading. */
+	private void close()
+	{
+		try
+		{
 			reader.close();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Opens the font file, ready for reading.
+	/** Opens the font file, ready for reading.
 	 * 
 	 * @param file
-	 *            - the font file.
-	 */
-	private void openFile(String file) {
-		try {
+	 *             - the font file. */
+	private void openFile(String file)
+	{
+		try
+		{
 			reader = new BufferedReader(new InputStreamReader(Class.class.getResourceAsStream("/fonts/" + file)));
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 			System.err.println("Couldn't read font meta file!");
 		}
 	}
 
-	/**
-	 * Loads the data about how much padding is used around each character in
-	 * the texture atlas.
-	 */
-	private void loadPaddingData() {
+	/** Loads the data about how much padding is used around each character in
+	 * the texture atlas. */
+	private void loadPaddingData()
+	{
 		processNextLine();
 		this.padding = getValuesOfVariable("padding");
 		this.paddingWidth = padding[PAD_LEFT] + padding[PAD_RIGHT];
 		this.paddingHeight = padding[PAD_TOP] + padding[PAD_BOTTOM];
 	}
 
-	/**
-	 * Loads information about the line height for this font in pixels, and uses
+	/** Loads information about the line height for this font in pixels, and uses
 	 * this as a way to find the conversion rate between pixels in the texture
-	 * atlas and screen-space.
-	 */
-	private void loadLineSizes() {
+	 * atlas and screen-space. */
+	private void loadLineSizes()
+	{
 		processNextLine();
 		int lineHeightPixels = getValueOfVariable("lineHeight") - paddingHeight;
-		verticalPerPixelSize = TextMeshCreator.LINE_HEIGHT / (double) lineHeightPixels;
+		verticalPerPixelSize = TextMeshCreator.LINE_HEIGHT / lineHeightPixels;
 		horizontalPerPixelSize = verticalPerPixelSize / aspectRatio;
 	}
 
-	/**
-	 * Loads in data about each character and stores the data in the
+	/** Loads in data about each character and stores the data in the
 	 * {@link Character} class.
 	 * 
 	 * @param imageWidth
-	 *            - the width of the texture atlas in pixels.
-	 */
-	private void loadCharacterData(int imageWidth) {
+	 *                   - the width of the texture atlas in pixels. */
+	private void loadCharacterData(int imageWidth)
+	{
 		processNextLine();
 		processNextLine();
-		while (processNextLine()) {
+		while (processNextLine())
+		{
 			Character c = loadCharacter(imageWidth);
-			if (c != null) {
-				metaData.put(c.getId(), c);
-			}
+			if (c != null)
+			{ metaData.put(c.getId(), c); }
 		}
 	}
 
-	/**
-	 * Loads all the data about one character in the texture atlas and converts
+	/** Loads all the data about one character in the texture atlas and converts
 	 * it all from 'pixels' to 'screen-space' before storing. The effects of
 	 * padding are also removed from the data.
 	 * 
-	 * @param imageSize
-	 *            - the size of the texture atlas in pixels.
-	 * @return The data about the character.
-	 */
-	private Character loadCharacter(int imageSize) {
+	 * @param  imageSize
+	 *                   - the size of the texture atlas in pixels.
+	 * @return           The data about the character. */
+	private Character loadCharacter(int imageSize)
+	{
 		int id = getValueOfVariable("id");
-		if (id == TextMeshCreator.SPACE_ASCII) {
+		if (id == TextMeshCreator.SPACE_ASCII)
+		{
 			this.spaceWidth = (getValueOfVariable("xadvance") - paddingWidth) * horizontalPerPixelSize;
 			return null;
 		}

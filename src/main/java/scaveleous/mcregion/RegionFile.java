@@ -1,4 +1,5 @@
 package scaveleous.mcregion;
+
 /*
 ** Author: Scaveleous (Minecraft Forum)
 ** (Public domain)
@@ -321,6 +322,8 @@ public class RegionFile
 			}
 		}
 		catch (IOException e)
-		{e.printStackTrace();}
+		{
+			e.printStackTrace();
+		}
 	}
 }

@@ -11,62 +11,58 @@ import io.github.hydos.ginger.engine.renderEngine.models.RawModel;
 import io.github.hydos.ginger.engine.renderEngine.shaders.SkyboxShader;
 import io.github.hydos.ginger.engine.utils.Loader;
 
-public class SkyboxRenderer {
-	
+public class SkyboxRenderer
+{
 	private static final float SIZE = 50f;
-	
-	private static final float[] VERTICES = {        
-	    -SIZE,  SIZE, -SIZE,
-	    -SIZE, -SIZE, -SIZE,
-	    SIZE, -SIZE, -SIZE,
-	     SIZE, -SIZE, -SIZE,
-	     SIZE,  SIZE, -SIZE,
-	    -SIZE,  SIZE, -SIZE,
-
-	    -SIZE, -SIZE,  SIZE,
-	    -SIZE, -SIZE, -SIZE,
-	    -SIZE,  SIZE, -SIZE,
-	    -SIZE,  SIZE, -SIZE,
-	    -SIZE,  SIZE,  SIZE,
-	    -SIZE, -SIZE,  SIZE,
-
-	     SIZE, -SIZE, -SIZE,
-	     SIZE, -SIZE,  SIZE,
-	     SIZE,  SIZE,  SIZE,
-	     SIZE,  SIZE,  SIZE,
-	     SIZE,  SIZE, -SIZE,
-	     SIZE, -SIZE, -SIZE,
-
-	    -SIZE, -SIZE,  SIZE,
-	    -SIZE,  SIZE,  SIZE,
-	     SIZE,  SIZE,  SIZE,
-	     SIZE,  SIZE,  SIZE,
-	     SIZE, -SIZE,  SIZE,
-	    -SIZE, -SIZE,  SIZE,
-
-	    -SIZE,  SIZE, -SIZE,
-	     SIZE,  SIZE, -SIZE,
-	     SIZE,  SIZE,  SIZE,
-	     SIZE,  SIZE,  SIZE,
-	    -SIZE,  SIZE,  SIZE,
-	    -SIZE,  SIZE, -SIZE,
-
-	    -SIZE, -SIZE, -SIZE,
-	    -SIZE, -SIZE,  SIZE,
-	     SIZE, -SIZE, -SIZE,
-	     SIZE, -SIZE, -SIZE,
-	    -SIZE, -SIZE,  SIZE,
-	     SIZE, -SIZE,  SIZE
+	private static final float[] VERTICES =
+	{
+		-SIZE, SIZE, -SIZE,
+		-SIZE, -SIZE, -SIZE,
+		SIZE, -SIZE, -SIZE,
+		SIZE, -SIZE, -SIZE,
+		SIZE, SIZE, -SIZE,
+		-SIZE, SIZE, -SIZE,
+		-SIZE, -SIZE, SIZE,
+		-SIZE, -SIZE, -SIZE,
+		-SIZE, SIZE, -SIZE,
+		-SIZE, SIZE, -SIZE,
+		-SIZE, SIZE, SIZE,
+		-SIZE, -SIZE, SIZE,
+		SIZE, -SIZE, -SIZE,
+		SIZE, -SIZE, SIZE,
+		SIZE, SIZE, SIZE,
+		SIZE, SIZE, SIZE,
+		SIZE, SIZE, -SIZE,
+		SIZE, -SIZE, -SIZE,
+		-SIZE, -SIZE, SIZE,
+		-SIZE, SIZE, SIZE,
+		SIZE, SIZE, SIZE,
+		SIZE, SIZE, SIZE,
+		SIZE, -SIZE, SIZE,
+		-SIZE, -SIZE, SIZE,
+		-SIZE, SIZE, -SIZE,
+		SIZE, SIZE, -SIZE,
+		SIZE, SIZE, SIZE,
+		SIZE, SIZE, SIZE,
+		-SIZE, SIZE, SIZE,
+		-SIZE, SIZE, -SIZE,
+		-SIZE, -SIZE, -SIZE,
+		-SIZE, -SIZE, SIZE,
+		SIZE, -SIZE, -SIZE,
+		SIZE, -SIZE, -SIZE,
+		-SIZE, -SIZE, SIZE,
+		SIZE, -SIZE, SIZE
 	};
-	
-	private static String[] TEXTURE_FILES = {"right.png", "left.png", "up.png", "down.png", "back.png", "front.png"};
-	
-	
+	private static String[] TEXTURE_FILES =
+	{
+		"right.png", "left.png", "up.png", "down.png", "back.png", "front.png"
+	};
 	private RawModel cube;
 	private int texture;
 	private SkyboxShader shader;
-	
-	public SkyboxRenderer(Matrix4f projectionMatrix) {
+
+	public SkyboxRenderer(Matrix4f projectionMatrix)
+	{
 		cube = Loader.loadToVAO(VERTICES, 3);
 		texture = Loader.loadCubeMap(TEXTURE_FILES);
 		shader = new SkyboxShader();
@@ -74,8 +70,9 @@ public class SkyboxRenderer {
 		shader.loadProjectionMatrix(projectionMatrix);
 		shader.stop();
 	}
-	
-	public void render(ThirdPersonCamera camera) {
+
+	public void render(ThirdPersonCamera camera)
+	{
 		shader.start();
 		shader.loadViewMatrix(camera);
 		GL30.glBindVertexArray(cube.getVaoID());
@@ -87,9 +84,7 @@ public class SkyboxRenderer {
 		GL30.glBindVertexArray(0);
 		shader.stop();
 	}
-	
-	public void cleanUp() {
-		shader.cleanUp();
-	}
-	
+
+	public void cleanUp()
+	{ shader.cleanUp(); }
 }
