@@ -78,4 +78,11 @@ public class RenderWrapper {
 		Window.create(2000, 1200, "LiteCraft - " + splash, 60);
 		GingerMain.init();
 	}
+
+	public static void update() {
+		Window.update();
+		GingerMain.update();
+		ParticleMaster.update(camera);
+		
+	}
 }
