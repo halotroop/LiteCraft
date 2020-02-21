@@ -4,22 +4,32 @@ import java.io.IOException;
 import java.util.Random;
 
 import org.aeonbits.owner.ConfigFactory;
-import org.apache.commons.cli.*;
-import org.apache.logging.log4j.*;
-import org.joml.Vector3f;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.Version;
-import org.lwjgl.glfw.*;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWErrorCallback;
 
-import com.github.halotroop.litecraft.input.*;
+import com.github.halotroop.litecraft.input.Input;
+import com.github.halotroop.litecraft.input.KeyCallbackHandler;
+import com.github.halotroop.litecraft.input.Keybind;
+import com.github.halotroop.litecraft.input.MouseCallbackHandler;
 import com.github.halotroop.litecraft.logic.Timer;
 import com.github.halotroop.litecraft.logic.Timer.TickListener;
-import com.github.halotroop.litecraft.options.*;
+import com.github.halotroop.litecraft.options.SettingsConfig;
+import com.github.halotroop.litecraft.options.SettingsHandler;
 import com.github.halotroop.litecraft.render.RenderWrapper;
 
-import io.github.hydos.ginger.engine.elements.objects.RenderPlayer;
+import io.github.hydos.ginger.engine.elements.objects.Player;
 import io.github.hydos.ginger.engine.io.Window;
+import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
 import io.github.hydos.ginger.engine.obj.ModelLoader;
-import io.github.hydos.ginger.engine.render.models.TexturedModel;
+import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
 
 public class LiteCraftMain implements Runnable
 {
@@ -94,7 +104,7 @@ public class LiteCraftMain implements Runnable
 		TexturedModel tModel = ModelLoader.loadModel("stall.obj", "stallTexture.png");
 		tModel.getTexture().setReflectivity(1f);
 		tModel.getTexture().setShineDamper(7f);
-		RenderPlayer renderPlayer = new RenderPlayer(tModel, new Vector3f(0, 0, -3), 0, 180f, 0, new Vector3f(0.2f, 0.2f, 0.2f));
+		Player renderPlayer = new Player(tModel, new Vector3f(0, 0, -3), 0, 180f, 0, new Vector3f(0.2f, 0.2f, 0.2f));
 		RenderWrapper.init(splashText, renderPlayer);
 		long windowId = Window.window;
 		KeyCallbackHandler.trackWindow(windowId);

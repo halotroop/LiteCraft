@@ -1,19 +1,22 @@
 package com.github.halotroop.litecraft.render;
 
-import java.util.*;
-
-import org.joml.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.github.halotroop.litecraft.LiteCraftMain;
 
 import io.github.hydos.ginger.engine.cameras.ThirdPersonCamera;
 import io.github.hydos.ginger.engine.elements.GuiTexture;
-import io.github.hydos.ginger.engine.elements.objects.*;
+import io.github.hydos.ginger.engine.elements.objects.Entity;
+import io.github.hydos.ginger.engine.elements.objects.Light;
+import io.github.hydos.ginger.engine.elements.objects.Player;
 import io.github.hydos.ginger.engine.font.TextMaster;
 import io.github.hydos.ginger.engine.io.Window;
+import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.mathEngine.vectors.Vector4f;
 import io.github.hydos.ginger.engine.particle.ParticleMaster;
-import io.github.hydos.ginger.engine.postprocessing.PostProcessing;
-import io.github.hydos.ginger.engine.render.MasterRenderer;
+import io.github.hydos.ginger.engine.postProcessing.PostProcessing;
+import io.github.hydos.ginger.engine.renderEngine.MasterRenderer;
 import io.github.hydos.ginger.engine.terrain.Terrain;
 import io.github.hydos.ginger.engine.utils.Loader;
 import io.github.hydos.ginger.main.GingerMain;
@@ -31,7 +34,7 @@ public class RenderWrapper
 	private static final List<Terrain> TERRAIN = new ArrayList<Terrain>();
 	private static final List<Entity> NORMAL_ENTITY = new ArrayList<Entity>();
 
-	public static void init(String splash, RenderPlayer renderPlayer)
+	public static void init(String splash, Player renderPlayer)
 	{
 		camera = new ThirdPersonCamera(new Vector3f(0, 0.1f, 0), renderPlayer);
 		Window.setBackgroundColour(96 / 256F, 26 / 256F, 108 / 25F);
