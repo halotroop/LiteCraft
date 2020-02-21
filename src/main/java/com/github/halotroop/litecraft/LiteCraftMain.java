@@ -16,7 +16,9 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 
 import com.github.halotroop.litecraft.input.Input;
+import com.github.halotroop.litecraft.input.KeyCallbackHandler;
 import com.github.halotroop.litecraft.input.Keybind;
+import com.github.halotroop.litecraft.input.MouseCallbackHandler;
 import com.github.halotroop.litecraft.logic.Timer;
 import com.github.halotroop.litecraft.logic.Timer.TickListener;
 import com.github.halotroop.litecraft.options.SettingsConfig;
@@ -109,7 +111,9 @@ public class LiteCraftMain implements Runnable
 		
 		RenderWrapper.init(splashText, renderPlayer);
 		
-		
+		long windowId = Window.window;
+		KeyCallbackHandler.trackWindow(windowId);
+		MouseCallbackHandler.trackWindow(windowId);
 //		window.setWindowTitle("LiteCraft - " + ((splashText == "" || splashText == null) ? "INSERT SPLASH TEXT HERE!" : splashText));
 		input();
 	}
