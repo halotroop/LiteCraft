@@ -1,13 +1,14 @@
 package com.github.halotroop.litecraft;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Random;
 
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.cli.*;
-import org.apache.log4j.Level;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -22,7 +23,7 @@ import com.github.halotroop.litecraft.render.Renderer;
 
 public class LiteCraftMain implements Runnable
 {
-	public static Logger logger = Logger.getLogger(Logger.class.getName());
+	public static Logger logger = LogManager.getLogger(Logger.class.getName());
 	private static SettingsConfig config;
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
@@ -76,7 +77,6 @@ public class LiteCraftMain implements Runnable
 	private void init()
 	{
 		// Leave this alone.
-		logger.setLevel(debug ? Level.ALL : Level.INFO);
 		GLFWErrorCallback.createPrint(System.err).set();
 		if (!GLFW.glfwInit()) throw new IllegalStateException("Unable to initialize GLFW");
 		window = new Window(width, height);
