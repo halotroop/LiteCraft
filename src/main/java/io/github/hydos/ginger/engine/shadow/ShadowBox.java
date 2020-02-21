@@ -186,7 +186,7 @@ public class ShadowBox
 	{
 		Vector3f point = new Vector3f().add(startPoint, new Vector3f(direction.x * width, direction.y * width, direction.z * width));
 		Vector4f point4f = new Vector4f(point.x, point.y, point.z, 1f);
-		//TODO: may be lighting bug due to .translate missing from vector4f
+		lightViewMatrix.transform(point4f);
 		return point4f;
 	}
 

@@ -8,6 +8,7 @@ import org.joml.Vector3f;
 import io.github.hydos.ginger.engine.math.Maths;
 import io.github.hydos.ginger.engine.render.models.RawModel;
 
+@SuppressWarnings("unused")
 public class NormalMappedObjLoader
 {
 	public static RawModel loadOBJ(String objFileName)

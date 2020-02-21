@@ -10,8 +10,6 @@ import org.lwjgl.opengl.GL32;
 
 import com.github.halotroop.litecraft.LiteCraftMain;
 
-import io.github.hydos.ginger.engine.io.Window;
-
 /** The frame buffer for the shadow pass. This class sets up the depth texture
  * which can be rendered to during the shadow render pass, producing a shadow
  * map. */
