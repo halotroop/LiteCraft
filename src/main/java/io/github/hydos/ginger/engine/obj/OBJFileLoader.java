@@ -16,8 +16,6 @@ public class OBJFileLoader
 	public static ModelData loadOBJ(String objFileName)
 	{
 		String objFile = RES_LOC + objFileName;
-		System.out.println(objFile);
-		System.out.println(objFile);
 		InputStreamReader isr = new InputStreamReader(OBJFileLoader.class.getResourceAsStream(objFile));
 		BufferedReader reader = new BufferedReader(isr);
 		String line;

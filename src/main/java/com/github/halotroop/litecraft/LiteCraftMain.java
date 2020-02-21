@@ -36,7 +36,7 @@ public class LiteCraftMain implements Runnable
 	private static SettingsConfig config;
 	public static int width = 640, height = 480, maxFPS = 60; // Don't change these values. They just initialize it in case we forget to set them later.
 	public static boolean spamLog = false, debug = false, limitFPS = false;
-	public static String splashText = "";
+	public static String splashText = "404";
 	public static boolean fullscreen = false;
 	private int fps, ups, tps;
 	private long frameTimer;

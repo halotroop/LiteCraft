@@ -38,7 +38,7 @@ public class RenderWrapper
 	public static void init(String splash, RenderPlayer renderPlayer)
 	{
 		camera = new ThirdPersonCamera(new Vector3f(0, 0.1f, 0), renderPlayer);
-		Window.setBackgroundColour(0.2f, 0.2f, 0.6f);
+		Window.setBackgroundColour(96 / 256F, 26 / 256F, 108 / 25F);
 		masterRenderer = new MasterRenderer(camera);
 		ParticleMaster.init(masterRenderer.getProjectionMatrix());
 		PostProcessing.init();
