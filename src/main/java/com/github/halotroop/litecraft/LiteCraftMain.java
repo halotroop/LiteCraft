@@ -27,9 +27,9 @@ import com.github.halotroop.litecraft.render.RenderWrapper;
 
 import io.github.hydos.ginger.engine.elements.objects.Player;
 import io.github.hydos.ginger.engine.io.Window;
-import io.github.hydos.ginger.engine.mathEngine.vectors.Vector3f;
+import io.github.hydos.ginger.engine.math.vectors.Vector3f;
 import io.github.hydos.ginger.engine.obj.ModelLoader;
-import io.github.hydos.ginger.engine.renderEngine.models.TexturedModel;
+import io.github.hydos.ginger.engine.render.models.TexturedModel;
 
 public class LiteCraftMain implements Runnable
 {
