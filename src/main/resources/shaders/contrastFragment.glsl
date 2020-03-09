@@ -24,4 +24,6 @@ void main(void){
 
  // calculate brightness
  out_Colour.rgb *= brightness;
+
+
 }

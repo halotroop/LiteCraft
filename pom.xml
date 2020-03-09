@@ -2,18 +2,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>LiteCraft</groupId>
+	<groupId>com.halotroop2288</groupId>
 	<artifactId>LiteCraft</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>NIGHTLY</version>
 	<name>LiteCraft</name>
-	<description>Lightweight Voxel Engine</description>
+	<description>Lightweight Voxel Engine utilizing the Ginger3D engine by hYdos</description>
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
 				<configuration>
-					<release>11</release>
+					<release>13</release>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -51,17 +51,21 @@
 			</properties>
 		</profile>
 	</profiles>
-	
+
 	<repositories>
 		<repository>
 			<id>sonatype-snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots><enabled>true</enabled></snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 
@@ -79,14 +83,16 @@
 
 	<dependencies>
 		<dependency>
+		    <groupId>com.github.hYdos</groupId>
+		    <artifactId>Ginger3D</artifactId>
+		    <version>NIGHTLY</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/Ginger3D-NIGHTLY.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>com.github.Spoutcraft</groupId>
 			<artifactId>soundsystem</artifactId>
 			<version>master-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.hYdos</groupId>
-			<artifactId>Ginger3D</artifactId>
-			<version>liteCraft-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -94,14 +100,9 @@
 			<version>2.11.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId> 
-		    <artifactId>log4j-core</artifactId> 
-		    <version>2.11.1</version> 
-		    </dependency> 
-		<dependency> 
-		    <groupId>org.apache.logging.log4j</groupId> 
-		    <artifactId>log4j-slf4j-impl</artifactId> 
-		    <version>2.11.1</version> 
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.11.1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-cli</groupId>
@@ -168,6 +169,11 @@
 			<groupId>com.github.JOML-CI</groupId>
 			<artifactId>joml-camera</artifactId>
 			<version>master-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>it.unimi.dsi</groupId>
+			<artifactId>fastutil</artifactId>
+			<version>8.3.1</version>
 		</dependency>
 	</dependencies>
 </project>

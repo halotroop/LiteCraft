@@ -20,8 +20,8 @@ const vec4 plane = vec4(0, -1, 0, 15);
 
 uniform float useFakeLighting;
 
-const float density = 0.01;
-const float gradient = 5.0;
+const float density = 0.0025;
+const float gradient = 10.0;
 
 void main(void){
 
@@ -35,9 +35,7 @@ void main(void){
 	pass_textureCoords = textureCoords;
 
 	vec3 actualNormal = normal;
-	if(useFakeLighting > 0.5){
-		actualNormal = vec3(0.0, 1.0, 0.0);
-	}
+	actualNormal = vec3(0.0, 1.0, 0.0);
 
 	surfaceNormal = (transformationMatrix * vec4(actualNormal, 0.0)).xyz;
 	for(int i=0;i<5;i++){

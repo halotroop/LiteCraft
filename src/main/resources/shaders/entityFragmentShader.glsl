@@ -17,6 +17,8 @@ uniform vec3 skyColour;
 
 void main(void){
 
+	float brightness = 3;
+
 	vec3 unitNormal = normalize(surfaceNormal);
 	vec3 unitVectorToCamera = normalize(toCameraVector);
 
@@ -46,5 +48,6 @@ void main(void){
 
 	out_Color = vec4(totalDiffuse, 1.0) * textureColour + vec4(totalSpecular, 1.0);
 	out_Color = mix(vec4(skyColour, 1.0), out_Color, visibility);
+	out_Color = vec4(out_Color.r*brightness, out_Color.g*brightness, out_Color.b*brightness, out_Color.a);
 
 }
