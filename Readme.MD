@@ -19,6 +19,11 @@ I feel it is very preferable to have our own codebase than work around one that 
    - Full access to modify source code and submit pull requests to be adopted into the main game
    - Modular structure to allow for easy additions of blocks, items, effects, shaders, etc.
 
+#### Stretch goals
+ 1. Minecraft: Java Edition server cross-compatability (if LiteCraft ever gains multiplayer)
+ 2. Full support of Fabric Mod Loader (It should already support all Java games by default, but sometimes has dependency issues)
+ 3. Full support of other Minecraft mod loaders (this would be the job of their devs, not us.)
+
 #### Stale
 Yes, this project is getting stale. The code hasn't been worked on for some time by the main team, as we have mostly disbanded. If you would like to see this project continue, contribute to the game! [Submit a pull request](https://github.com/halotroop/LiteCraft/compare), or [join the Discord](https://halotroop.com/discord) if you want to become a memeber the main team. All will be considered.
 
